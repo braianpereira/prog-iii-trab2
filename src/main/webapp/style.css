@@ -1,0 +1,279 @@
+/*
+Estilo Geral
+*/
+*{
+    padding: 0;
+    margin: 0;
+
+    text-decoration: none;
+    list-style-type: none;
+    font-family: Arial, Impact, serif;
+}
+
+:root{
+    --cor-nav: #FFFAFF;
+    --cor-menu: #DBC3E6;
+    --cor-menu-hover: #99A8E8;
+    --cor-fundo-form: #fffCff;
+}
+
+header{
+    background-color: var(--cor-nav);
+    box-shadow: 0 0 10px gray;
+}
+
+.conteiner-nav {
+    height: 3rem;
+    display: flex;
+    padding: 0.5rem 1rem ;
+    justify-content: space-between;
+}
+
+.conteiner-nav img {
+    height: 100%;
+    width: 100%;
+}
+
+.imgLogo{
+    width: 5%;
+}
+
+.conteiner-menu{
+    display: flex;
+    align-self: center;
+    width: 50%;
+    margin: 0 20% 0 0;
+}
+
+.itens-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.itens-menu a {
+    color: var(--cor-menu);
+}
+.itens-menu a:hover{
+    pointer-events: stroke;
+    color: var(--cor-menu-hover) ;
+    font-size: 1.4rem;
+    transition: 0.5s;
+}
+
+.itens-menu li{
+    font-size: 1.2rem;
+    padding: 0 .5rem ;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer{
+    background: #DBC3E6;
+    padding: 1rem 0;
+    bottom: 0;
+    min-width: 100vw;
+
+
+    display: inline;
+    position: fixed;
+}
+
+.conteiner-footer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.conteiner-footer span::before{
+    content:  '\00A9';
+}
+/*
+.menu-ocuto{
+
+    position: absolute;
+    background-color: var(--cor-nav);
+    border-radius: 10px;
+    box-shadow: 0 0 10px darkslategray;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition:250ms;
+
+}
+
+.menu-ocuto li{
+    padding: .5rem 2rem;
+
+}
+
+.menu li:hover ul{
+    opacity:1;
+    visibility:visible;
+}*/
+
+#teste::before{
+    content: '\002315';
+    font-weight: bold;
+}
+
+/*
+HOME
+*/
+.conteinerPrincipal{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.titulo{
+    font-family: "Comic Sans MS", serif;
+    color: var(--cor-menu-hover);
+}
+
+.textoPrincipal{
+    display: flex;
+    padding: 1rem;
+}
+
+.textoPrincipal img{
+    width: 30%;
+    padding: 0 1rem;
+}
+
+.textoPrincipal p{
+    font-family: Verdana, serif;
+    font-size: 12pt;
+    text-align: justify-all;
+}
+
+.textoPrincipal p:nth-child(2){
+    color: var(--cor-menu-hover);
+}
+
+/*
+Pesquisa
+*/
+
+.botaoTabela, .botaoFiltrar{
+    padding: 3pt;
+    font-family: "Comic Sans MS", serif;
+    background: var(--cor-menu);
+    border: var(--cor-menu-hover) 1px solid;
+    border-radius: 5px;
+}
+
+.botaoTabela:hover, .botaoFiltrar:hover {
+    pointer-events: stroke;
+    color: var(--cor-menu-hover) ;
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+.filtro{
+    padding-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.filtro label{
+    font-weight: bold;
+}
+
+.barraPesquisa{
+    width: 50%;
+    margin: 0 0.5rem;
+}
+
+.containerTabela{
+    padding: 1rem 0;
+    width: 100%;
+}
+
+table{
+    border: black 1px solid;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+thead{
+    border-bottom: black 1px solid;
+    box-shadow: 0 2px 2px gray;
+    font-family: Arial, serif;
+}
+tbody tr:nth-child(even) {
+    background-color: #CCC;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #FFF;
+}
+/*
+Cadastro
+*/
+.cadastro{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.cadastro fieldset, label, legend{
+
+    padding: 10px;
+    border:none;
+    background: var(--cor-fundo-form);
+    font-family: Verdana, serif;
+    font-weight: bold;
+}
+
+.cadastro fieldset:first-child{
+    border: 1.5px darkgrey solid;
+    border-radius: 10px;
+    justify-self: center;
+}
+
+.botaoForm{
+    display: flex;
+    justify-content: center;
+}
+
+.botaoForm input{
+    margin: 0 0.5rem;
+}
+
+/*
+Confirmação
+*/
+.messagem{
+    border: #99A8E8 1px solid;
+    border-radius: 15px;
+    min-width: 80vw;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.messagem span{
+    font-family: Verdana, serif;
+    font-size: 12pt;
+    color: red;
+}
+
+
