@@ -1,10 +1,14 @@
-<%--
+<%@ page import="br.dev.grancode.modelo.Usuario" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Bráian Pereira
   Date: 27/12/2022
   Time: 20:04
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <tags:layout>
@@ -24,47 +28,24 @@
             <table>
                 <thead id="aa">
                 <tr>
-                    <th>Selecação</th>
-                    <th>col1</th>
-                    <th>col2</th>
-                    <th>col3</th>
-                    <th>col4</th>
-                    <th>col5</th>
+                    <th>Nome</th>
+                    <th>Nascimento</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>CPF</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="linha">
-                    <td><input type="checkbox" name="selecao"></td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                </tr>
-                <tr class="linha">
-                    <td><input type="checkbox" name="selecao"></td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                </tr>
+                <c:forEach var="product" items="${usuarios}">
                 <tr>
-                    <td><input type="checkbox" name="selecao"></td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                    <td>xxxxxxxx</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="selecao"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                        <td>${product.getNome()}</td>
+                        <td>${product.getNascimento()}</td>
+                        <td>${product.getEmail()}</td>
+                        <td>${product.getUsername()}</td>
+                        <td>${product.getCpf()}</td>
+                    </tr>
+                </c:forEach>
+
                 </tbody>
             </table>
         </div>

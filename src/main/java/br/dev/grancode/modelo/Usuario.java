@@ -3,62 +3,19 @@ package br.dev.grancode.modelo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Usuario {
     private String cpf;
     private String nome;
-    private Calendar nascimento;
+    private String nascimento;
     private String email;
     private String telefone;
     private boolean whats;
     private String username;
     private String senha;
-
-    public void inserir() {
-        try {
-            /* Aqui vai o algoritmo de persistência */
-            // Abrir uma conexão com o database;
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
-
-            // Preparar uma sentença SQL;
-            PreparedStatement ps = con.prepareStatement(
-                    "insert into usuarios (CPF, Nome, Data_Nascimento, Email, Telefone, Whats, Username, Senha) " +
-                            "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-            // Parametrizar a senteça SQL;
-            ps.setString(1, this.getCpf());
-            ps.setString(2, this.getNome());
-            ps.setDate(3, java.sql.Date.valueOf(this.getNascimento().toString()));
-            ps.setString(4, this.getEmail());
-            ps.setString(5, this.getTelefone());
-            ps.setBoolean(6, this.isWhats());
-            ps.setString(7, this.getUsername());
-            ps.setString(8, this.getSenha());
-
-            // Executar a Senteça;
-            ps.execute();
-
-            // Limpar a memória
-            ps.close();
-            con.close();
-        } catch (Exception e) {
-            ;
-        }
-    }
-
-    public void atualizar() {
-
-    }
-
-    public void excluir() {
-
-    }
-
-    public void consultar() {
-
-    }
 
     public String getCpf() {
         return cpf;
@@ -76,11 +33,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public Calendar getNascimento() {
+    public String getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Calendar nascimento) {
+    public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
 
