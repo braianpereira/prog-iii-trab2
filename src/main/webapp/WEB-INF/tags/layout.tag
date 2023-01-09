@@ -43,5 +43,6 @@
             </span>
     </div>
 </footer>
+<script src="<%=request.getContextPath()%>/src/scripts.js" > </script>
 </body>
 </html>

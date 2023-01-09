@@ -68,7 +68,7 @@ public class UsuarioDao {
             // Parametrizar a senteça SQL;
             FieldsSet(usuario, ps);
 
-            ps.setString(8, usuario.getCpf());
+            ps.setString(9, usuario.getPk());
 
             // Executar a Senteça;
             status = ps.executeUpdate();

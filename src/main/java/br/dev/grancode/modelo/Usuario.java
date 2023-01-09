@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Usuario {
+    private String pk;
     private String cpf;
     private String nome;
     private String nascimento;
@@ -19,6 +20,14 @@ public class Usuario {
 
     public String getCpf() {
         return cpf;
+    }
+
+    public String getPk() {
+        return pk;
+    }
+
+    public void setPk(String pk) {
+        this.pk = pk;
     }
 
     public void setCpf(String cpf) {
@@ -66,7 +75,7 @@ public class Usuario {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -80,4 +89,6 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+
 }

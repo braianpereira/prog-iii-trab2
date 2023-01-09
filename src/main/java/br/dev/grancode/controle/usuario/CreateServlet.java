@@ -16,7 +16,8 @@ public class CreateServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/pages/usuario-novo.jsp").forward(req, resp);
+        req.setAttribute("method", "novo");
+        req.getRequestDispatcher("/WEB-INF/pages/usuarioForm.jsp").forward(req, resp);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class CreateServlet extends HttpServlet {
             String nascimento = request.getParameter("nascimento");
             String email = request.getParameter("email");
             String telefone = request.getParameter("telefone");
-            Boolean whats = Boolean.valueOf(request.getParameter("whats"));
+            Boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
             String username = request.getParameter("username");
             String senha = request.getParameter("senha");
 
