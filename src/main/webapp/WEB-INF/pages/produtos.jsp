@@ -26,10 +26,9 @@
             <thead id="aa">
             <tr>
                 <th>Nome</th>
-                <th>Nascimento</th>
-                <th>Email</th>
-                <th>CPF</th>
-                <th>Ações</th>
+                <th>Descrição</th>
+                <th>Unidade</th>
+                <th>Preço unitario</th>
             </tr>
             </thead>
             <tbody>

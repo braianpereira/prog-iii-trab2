@@ -1,10 +1,8 @@
 package br.dev.grancode.modelo;
 
-import java.sql.Date;
-
 public class Pedido {
 
-    int mumero;
+    int numero;
 
     String dataEmissao;
 
@@ -14,12 +12,12 @@ public class Pedido {
 
     int cliente;
 
-    public int getMumero() {
-        return mumero;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setMumero(int mumero) {
-        this.mumero = mumero;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getDataEmissao() {

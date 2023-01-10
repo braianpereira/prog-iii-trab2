@@ -11,7 +11,7 @@
 
 <tags:layout>
     <div class="conteinerPrincipal">
-        <h1 class="titulo">Clientes</h1>
+        <h1 class="titulo">pedidos</h1>
             <%--        <form class="filtro" action="" method="post">--%>
             <%--            <label for="filtro">Filtro: </label>--%>
             <%--            <input class="barraPesquisa" placeholder="Teste" type="text" name="filtro" id="filtro">--%>
@@ -19,30 +19,32 @@
             <%--        </form>--%>
         <div class="containerTabela">
             <section>
-                <button class="botaoTabela" type="button" name="inserir"><a href="${pageContext.request.contextPath}/clientes/novo">Inserir</a></button>
+                <button class="botaoTabela" type="button" name="inserir"><a href="${pageContext.request.contextPath}/pedidos/novo">Inserir</a></button>
                     <%--                <button class="botaoTabela" type="button" name="atualizar">Atualizar</button>--%>
                     <%--                <button class="botaoTabela" type="button" name="excluir">Excluir</button>--%>
             </section>
             <table>
                 <thead id="aa">
                 <tr>
+                    <th>Nemero do pedido</th>
                     <th>Nome</th>
-                    <th>Nascimento</th>
-                    <th>Email</th>
-                    <th>CPF</th>
-                    <th>Ações</th>
+                    <th>Data de emissão</th>
+                    <th>Valor do frete</th>
+                    <th>Data de entrega</th>
+                    <th>Cliente</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="cliente" items="${clientes}">
+                <c:forEach var="pedido" items="${pedidos}">
                     <tr>
-                        <td>${cliente.getNome()}</td>
-                        <td>${cliente.getNascimento()}</td>
-                        <td>${cliente.getEmail()}</td>
-                        <td>${cliente.getCpf()}</td>
+                        <td>${pedido.getNumero}</td>
+                        <td>${pedido.getDataEmissao()}</td>
+                        <td>${pedido.getValorFrete()}</td>
+                        <td>${pedido.getDataEntrega()}</td>
+                        <td>${pedido.getCliente()}</td>
                         <td>
-                            <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/clientes/editar?id=${cliente.getId()}">Atualizar</a></button>
-                            <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/clientes/remover?id=${cliente.getId()}">Excluir</a></button>
+                            <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/pedidos/editar?id=${pedido.getId()}">Atualizar</a></button>
+                            <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/pedidos/remover?id=${pedido.getId()}">Excluir</a></button>
                         </td>
                     </tr>
                 </c:forEach>

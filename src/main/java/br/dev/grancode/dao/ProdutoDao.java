@@ -25,7 +25,7 @@ public class ProdutoDao {
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
-                    "insert into Clientes (nome, decricao, unidade, preco_unitario) " +
+                    "insert into Clientes (nome, descricao, unidade, preco_unitario) " +
                             "values (?, ?, ?, ?)");
 
             // Parametrizar a senteça SQL;
