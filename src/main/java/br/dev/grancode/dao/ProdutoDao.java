@@ -25,7 +25,7 @@ public class ProdutoDao {
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
-                    "insert into Clientes (nome, descricao, unidade, preco_unitario) " +
+                    "insert into Produtos (Nome, Descricao, Unidade, Preco_Unitario)" +
                             "values (?, ?, ?, ?)");
 
             // Parametrizar a senteça SQL;
@@ -52,9 +52,9 @@ public class ProdutoDao {
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
-                    "update Clientes set nome = ?, descricao = ?, unidade = ?, " +
-                            "preco_unitario = ?" +
-                            "WHERE id = ?");
+                    "update Produtos set Nome = ?, Descricao = ?, Unidade = ?, " +
+                            "Preco_Unitario = ?" +
+                            "WHERE ID = ?");
 
             // Parametrizar a senteça SQL;
             setFieldsProduto(produto, ps);

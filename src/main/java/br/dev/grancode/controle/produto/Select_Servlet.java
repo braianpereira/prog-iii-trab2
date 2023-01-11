@@ -17,7 +17,7 @@ public class Select_Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Produto> list = ProdutoDao.getAllProdutos();
 
-        request.setAttribute("produto", list);
+        request.setAttribute("produtos", list);
         request.getRequestDispatcher("/WEB-INF/pages/produtos.jsp").forward(request, response);
     }
 }

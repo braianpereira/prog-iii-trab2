@@ -1,4 +1,8 @@
-<%--
+<%@ page import="br.dev.grancode.modelo.Pedido" %>
+<%@ page import="br.dev.grancode.modelo.Produto" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.dev.grancode.dao.ProdutoDao" %><%--
   Created by IntelliJ IDEA.
   User: Bráian Pereira
   Date: 27/12/2022

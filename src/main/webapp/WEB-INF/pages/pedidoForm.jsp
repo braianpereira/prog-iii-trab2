@@ -1,4 +1,7 @@
-<%--
+<%@ page import="br.dev.grancode.modelo.Produto" %>
+<%@ page import="java.util.List" %>
+<%@ page import="br.dev.grancode.dao.ProdutoDao" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Bráian Pereira
   Date: 27/12/2022
@@ -8,7 +11,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <tags:layout>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Cadastro</h1>
@@ -19,8 +21,8 @@
                     <legend>Dados de Identificações</legend>
                     <input type="hidden" name="id" id="id" value="${pedidos.getId()}">
                     <fieldset>
-                        <label for="dataEmissao">Nome: </label>
-                        <input type="text" name="dataEmissao" required id="dataEmissao" value="${pedidos.getDataEmissao()}">
+                        <label for="dataEmissao">Data de Emissão: </label>
+                        <input type="date" name="dataEmissao" required id="dataEmissao" value="${pedidos.getDataEmissao()}">
                     </fieldset>
                     <fieldset>
                         <label for="valorFrete">Descrição:  </label>
@@ -28,11 +30,32 @@
                     </fieldset>
                     <fieldset>
                         <label for="dataEntrega">Data de entrega :  </label>
-                        <input type="text" name="dataEntrega" required id="dataEntrega" value="${pedidos.getDataEntrega()}">
+                        <input type="date" name="dataEntrega" required id="dataEntrega" value="${pedidos.getDataEntrega()}">
                     </fieldset>
                     <fieldset>
-                        <label for="cliente">Cliente : </label>
-                        <input type="text" name="cliente" required id="cliente" value="${pedidos.getCliente()}">
+                        <label for="clientes">Cliente : </label>
+                        <select name="clientes" id="clientes">
+                            <c:forEach var="cliente" items="${clientes}">
+                                <option value="${cliente.getId()}">${cliente.getNome()}</option>
+                            </c:forEach>
+                        </select>
+                    </fieldset>
+                    <label for="produtos">Produtos: </label>
+                    <fieldset class="produtos">
+                        <select name="produtos[]" id="produtos">
+                            <c:forEach var="produto" items="${produtos}">
+                                <option value="${produto.getId()}">${produto.getNome()}</option>
+                            </c:forEach>
+                                <input type="number" name="prodQtd">
+                        </select>
+                    </fieldset>
+                    <fieldset class="produtos">
+                        <select name="produtos[]" id="produtos">
+                            <c:forEach var="produto" items="${produtos}">
+                                <option value="2">${produto.getNome()}</option>
+                            </c:forEach>
+                            <input type="number" name="prodQtd">
+                        </select>
                     </fieldset>
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>

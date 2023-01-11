@@ -12,11 +12,11 @@ import java.util.List;
 public class SelectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
-
         List<Cliente> list = ClienteDao.getAllClientes();
 
         request.setAttribute("clientes", list);
         request.getRequestDispatcher("/WEB-INF/pages/clientes.jsp").forward(request, response);
+
     }
 
 
