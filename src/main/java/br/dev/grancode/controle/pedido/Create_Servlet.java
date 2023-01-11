@@ -35,7 +35,7 @@ public class Create_Servlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         String teste[] = request.getParameterValues("produtos");
-        System.out.println(teste[1]);
+        System.out.println(teste);
 
 
 //        try {
