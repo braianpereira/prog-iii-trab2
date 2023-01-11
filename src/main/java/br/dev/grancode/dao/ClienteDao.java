@@ -12,7 +12,8 @@ public class ClienteDao {
         Connection con=null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
+//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
         }catch(Exception e){System.out.println(e);}
         return con;
     }
