@@ -1,6 +1,7 @@
 package br.dev.grancode.dao;
 
 import br.dev.grancode.modelo.Pedido;
+import br.dev.grancode.modelo.PedidoProduto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,12 +34,35 @@ public class PedidoDao {
             // Executar a Senteça;
             status = ps.executeUpdate();
 
+            for(int i = 0; i < pedido.getProduto().length; i++){
+                setProdutoPedido(pedido.getProduto()[i],pedido.getQuantidae()[i]);
+            }
+
             // Limpar a memória
             ps.close();
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return status;
+    }
+
+    private static void setProdutoPedido(String produto, String qtd) throws SQLException {
+        int status=0;
+        try{
+            PedidoProduto pedidoProduto = new PedidoProduto();
+
+            Connection con= PedidoDao.getConnection();
+            PreparedStatement ps=con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?");
+            PreparedStatement pd=con.prepareStatement("SELECT Numero FROM Pedidos ORDER BY Numero DESC LIMIT 1");
+
+
+
+            status=ps.executeUpdate();
+
+            con.close();
+        }catch(Exception e){e.printStackTrace();}
 
         return status;
     }

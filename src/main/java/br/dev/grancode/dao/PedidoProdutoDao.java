@@ -16,9 +16,9 @@ public class PedidoProdutoDao {
         }catch(Exception e){System.out.println(e);}
         return con;
     }
-    public static int inserir(int produto_id, int quantidade) {
+    public static int inserir(PedidoProduto pedidoProduto) {
         int status = 0;
-        PedidoProduto pedidoProduto =
+
         try {
             Connection con = PedidoProdutoDao.getConnection();
 
@@ -75,21 +75,7 @@ public class PedidoProdutoDao {
 //    }
 
 
-    private static void setProdutoPedido(PedidoProduto pedidoProduto) throws SQLException {
-        int status=0;
-        try{
-            Connection con= PedidoProdutoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("delete from Produtos_has_Pedidos where Produtos_ID = ? AND Pedidos_Numero = ?");
-            ps.setInt(1, Produto_ID);
-            ps.setInt(2, Pedido_Numero);
 
-            status=ps.executeUpdate();
-
-            con.close();
-        }catch(Exception e){e.printStackTrace();}
-
-        return status;
-    }
 
     private static void setFieldspedidoProduto(PedidoProduto pedidoProduto, PreparedStatement ps) throws SQLException {
         ps.setInt(1, pedidoProduto.getProdutoId());
