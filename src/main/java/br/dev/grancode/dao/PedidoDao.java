@@ -49,22 +49,29 @@ public class PedidoDao {
     }
 
     private static void setProdutoPedido(String produto, String qtd) throws SQLException {
-        int status=0;
         try{
             PedidoProduto pedidoProduto = new PedidoProduto();
 
             Connection con= PedidoDao.getConnection();
             PreparedStatement ps=con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?");
+            ps.setInt(1, Integer.parseInt(produto));
+            ResultSet rs = ps.executeQuery();
+
             PreparedStatement pd=con.prepareStatement("SELECT Numero FROM Pedidos ORDER BY Numero DESC LIMIT 1");
+            ResultSet rd = ps.executeQuery();
 
 
+            pedidoProduto.setProdutoId(Integer.parseInt(produto));
+            pedidoProduto.setPedidoId(Integer.parseInt(rd.getString(1)));
+            pedidoProduto.setQuantidade(Integer.parseInt(qtd));
+            pedidoProduto.setPreco(Float.parseFloat(rs.getString(2)));
+            pedidoProduto.setUnidade(rs.getString(1));
 
-            status=ps.executeUpdate();
+            PedidoProdutoDao.inserir(pedidoProduto);
 
             con.close();
         }catch(Exception e){e.printStackTrace();}
 
-        return status;
     }
 
     public static int atualizar(Pedido pedido) {
