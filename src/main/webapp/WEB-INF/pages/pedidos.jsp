@@ -37,14 +37,14 @@
                 <tbody>
                 <c:forEach var="pedido" items="${pedidos}">
                     <tr>
-                        <td>${pedido.getNumero}</td>
+                        <td>${pedido.getNumero()}</td>
                         <td>${pedido.getDataEmissao()}</td>
                         <td>${pedido.getValorFrete()}</td>
                         <td>${pedido.getDataEntrega()}</td>
                         <td>${pedido.getCliente()}</td>
                         <td>
-                            <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/pedidos/editar?id=${pedido.getId()}">Atualizar</a></button>
-                            <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/pedidos/remover?id=${pedido.getId()}">Excluir</a></button>
+                            <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/pedidos/editar?id=${pedido.getNumero()}">Atualizar</a></button>
+                            <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/pedidos/remover?id=${pedido.getNumero()}">Excluir</a></button>
                         </td>
                     </tr>
                 </c:forEach>

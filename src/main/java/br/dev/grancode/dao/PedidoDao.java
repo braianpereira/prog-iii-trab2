@@ -25,7 +25,7 @@ public class PedidoDao {
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
-                    "insert into Pedidos (Data_Emissao, Valor_Frete, Data_Entrega, Cliente_Id) " +
+                    "insert into Pedidos (Data_Emissao, Valor_Frete, Data_Entrega, Clientes_ID) " +
                             "values (?, ?, ?, ?)");
 
             // Parametrizar a senteça SQL;
@@ -53,19 +53,24 @@ public class PedidoDao {
             PedidoProduto pedidoProduto = new PedidoProduto();
 
             Connection con= PedidoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?");
+
+            PreparedStatement ps=con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?;");
             ps.setInt(1, Integer.parseInt(produto));
             ResultSet rs = ps.executeQuery();
 
-            PreparedStatement pd=con.prepareStatement("SELECT Numero FROM Pedidos ORDER BY Numero DESC LIMIT 1");
-            ResultSet rd = ps.executeQuery();
+            pedidoProduto.setUnidade(rs.getString(1));
+            pedidoProduto.setPreco(rs.getFloat(2));
+
+            ps.close();
+            rs.close();
+
+            PreparedStatement pd=con.prepareStatement("SELECT Numero FROM Pedidos ORDER BY Numero DESC LIMIT 1;");
+            ResultSet rd = pd.executeQuery();
 
 
             pedidoProduto.setProdutoId(Integer.parseInt(produto));
-            pedidoProduto.setPedidoId(Integer.parseInt(rd.getString(1)));
+            pedidoProduto.setPedidoId(rd.getInt(1));
             pedidoProduto.setQuantidade(Integer.parseInt(qtd));
-            pedidoProduto.setPreco(Float.parseFloat(rs.getString(2)));
-            pedidoProduto.setUnidade(rs.getString(1));
 
             PedidoProdutoDao.inserir(pedidoProduto);
 
@@ -115,7 +120,7 @@ public class PedidoDao {
         int status=0;
         try{
             Connection con= PedidoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("delete from Pedidos where id = ?");
+            PreparedStatement ps=con.prepareStatement("delete from Pedidos where Numero = ?");
             ps.setInt(1, id);
 
             status=ps.executeUpdate();

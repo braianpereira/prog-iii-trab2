@@ -89,9 +89,8 @@ public class PedidoProdutoDao {
         int status=0;
         try{
             Connection con= PedidoProdutoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("delete from Produtos_has_Pedidos where Produtos_ID = ? AND Pedidos_Numero = ?");
-            ps.setInt(1, Produto_ID);
-            ps.setInt(2, Pedido_Numero);
+            PreparedStatement ps=con.prepareStatement("delete from Produtos_has_Pedidos where Pedidos_Numero = ?");
+            ps.setInt(1, Pedido_Numero);
 
             status=ps.executeUpdate();
 

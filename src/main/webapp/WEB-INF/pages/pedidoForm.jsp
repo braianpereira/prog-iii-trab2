@@ -21,20 +21,20 @@
                     <legend>Dados de Identificações</legend>
                     <input type="hidden" name="id" id="id" value="${pedidos.getId()}">
                     <fieldset>
-                        <label for="dataEmissao">Data de Emissão: </label>
-                        <input type="date" name="dataEmissao" required id="dataEmissao" value="${pedidos.getDataEmissao()}">
+                        <label for="Data_Emissao">Data de Emissão: </label>
+                        <input type="date" name="Data_Emissao" required id="Data_Emissao" value="${pedidos.getDataEmissao()}">
                     </fieldset>
                     <fieldset>
-                        <label for="valorFrete">Descrição:  </label>
-                        <input type="text" name="valorFrete" required id="valorFrete" value="${pedidos.getValorFrete()}">
+                        <label for="Valor_Frete">Descrição:  </label>
+                        <input type="text" name="Valor_Frete" required id="Valor_Frete" value="${pedidos.getValorFrete()}">
                     </fieldset>
                     <fieldset>
-                        <label for="dataEntrega">Data de entrega :  </label>
-                        <input type="date" name="dataEntrega" required id="dataEntrega" value="${pedidos.getDataEntrega()}">
+                        <label for="Data_Entrega">Data de entrega :  </label>
+                        <input type="date" name="Data_Entrega" required id="Data_Entrega" value="${pedidos.getDataEntrega()}">
                     </fieldset>
                     <fieldset>
-                        <label for="clientes">Cliente : </label>
-                        <select name="clientes" id="clientes">
+                        <label for="Cliente_Id">Cliente : </label>
+                        <select name="Cliente_Id" id="Cliente_Id">
                             <c:forEach var="cliente" items="${clientes}">
                                 <option value="${cliente.getId()}">${cliente.getNome()}</option>
                             </c:forEach>
@@ -49,6 +49,7 @@
                                 <input type="number" name="quantidade">
                         </select>
                     </fieldset>
+
                     <fieldset class="produtos">
                         <select name="produtos" id="produtos">
                             <c:forEach var="produto" items="${produtos}">
