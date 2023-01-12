@@ -20,7 +20,7 @@
                     <input type="hidden" name="id" id="id" value="${produto.getId()}">
                     <fieldset>
                         <label for="nome">Nome: </label>
-                        <input type="text" name="nome" required id="nome" value="${produto.getNome()}">
+                        <input type="text" name="nome" required id="nome" maxlength="100" onkeypress="validarNome(event)" value="${produto.getNome()}">
                     </fieldset>
                     <fieldset>
                         <label for="descricao">Descrição:  </label>
@@ -32,7 +32,7 @@
                     </fieldset>
                     <fieldset>
                         <label for="preco_unitario">Preço por unidade: </label>
-                        <input type="text" name="preco_unitario" required id="preco_unitario" value="${produto.getPreco_unitario()}">
+                        <input type="text" name="preco_unitario" required id="preco_unitario" maxlength="3" onkeypress="validarNome(event)" value="${produto.getPreco_unitario()}">
                     </fieldset>
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>

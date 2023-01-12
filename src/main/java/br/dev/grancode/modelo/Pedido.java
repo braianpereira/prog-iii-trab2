@@ -2,7 +2,11 @@ package br.dev.grancode.modelo;
 
 import br.dev.grancode.dao.ClienteDao;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class Pedido {
@@ -34,6 +38,10 @@ public class Pedido {
         return dataEmissao;
     }
 
+    public  String getDataEmissaoPt() throws ParseException {
+        return dataString(this.dataEmissao);
+    }
+
     public void setDataEmissao(String dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
@@ -54,6 +62,10 @@ public class Pedido {
 
     public String getDataEntrega() {
         return dataEntrega;
+    }
+
+    public  String getDataEntregaPt() throws ParseException {
+        return dataString(this.dataEntrega);
     }
 
     public void setDataEntrega(String dataEntrega) {
@@ -88,5 +100,17 @@ public class Pedido {
 
     public void setQuantidae(String[] quantidae) {
         this.quantidae = quantidae;
+    }
+
+    public String dataString(String datas) throws ParseException {
+        SimpleDateFormat formaOring = new SimpleDateFormat("yyyy-MM-dd");
+        Date data = formaOring.parse(datas);
+        System.out.println(data);
+
+        SimpleDateFormat formatDest = new SimpleDateFormat("dd/MM/yyyy");
+        String dataString = formatDest.format(data);
+
+        System.out.println(dataString);
+        return dataString;
     }
 }

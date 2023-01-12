@@ -24,7 +24,7 @@
                     <input type="hidden" name="id" id="id" value="${cliente.getId()}">
                     <fieldset>
                         <label for="nome">Nome: </label>
-                        <input type="text" name="nome" required id="nome" value="${cliente.getNome()}">
+                        <input type="text" name="nome" required id="nome" maxlength="100" onkeypress="validarNome(event)" value="${cliente.getNome()}">
                     </fieldset>
                     <fieldset>
                         <label for="nascimento">Data de Nascimento (dd/mm/yyyy): </label>

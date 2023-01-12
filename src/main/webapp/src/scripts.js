@@ -40,6 +40,41 @@ function validarTelefone(evt) {
     }
 }
 
+function validarNome(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length > 100){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+
+}function validarUnidade(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length > 3){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+
+}function validarNome(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length > 100){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+
+}function validarNome(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length > 100){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+
+
 function addProduto() {
     let produtos = document.querySelector(".produtos")
     let produto = produtos.querySelector("fieldset")
@@ -93,4 +128,11 @@ function maskFrete(el) {
 
     el.value = result
 
+}
+
+function maskFrete(){
+    let datas = document.getElementsByClassName('data')
+    for (const data in datas) {
+        data.replace('-', "/")
+    }
 }
