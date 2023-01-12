@@ -25,7 +25,7 @@ public class Create_Servlet extends HttpServlet {
         List<Cliente> listCliente = ClienteDao.getAllClientes();
         request.setAttribute("clientes", listCliente);
 
-        System.out.println("teste");
+//        System.out.println("teste");
 
         request.setAttribute("method", "novo");
         request.getRequestDispatcher("/WEB-INF/pages/pedidoForm.jsp").forward(request, response);

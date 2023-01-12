@@ -1,5 +1,8 @@
 package br.dev.grancode.modelo;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Produto {
 
     int id;
@@ -47,6 +50,12 @@ public class Produto {
 
     public float getPreco_unitario() {
         return preco_unitario;
+    }
+
+    public String getPrecoBr() {
+        Locale ptBr = new Locale("pt", "BR");
+        String valorString = NumberFormat.getCurrencyInstance(ptBr).format(preco_unitario);
+        return valorString;
     }
 
     public void setPreco_unitario(float preco_unitario) {

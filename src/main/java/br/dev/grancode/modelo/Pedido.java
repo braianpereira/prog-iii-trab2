@@ -1,5 +1,7 @@
 package br.dev.grancode.modelo;
 
+import br.dev.grancode.dao.ClienteDao;
+
 public class Pedido {
 
     int numero;
@@ -11,6 +13,8 @@ public class Pedido {
     String dataEntrega;
 
     int cliente;
+
+    Cliente clienteM;
 
     String[] produto;
 
@@ -49,6 +53,12 @@ public class Pedido {
 
     public int getCliente() {
         return cliente;
+    }
+
+    public Cliente getClienteM() {
+        clienteM = ClienteDao.getClientePorId(getCliente());
+
+        return clienteM;
     }
 
     public void setCliente(int cliente) {

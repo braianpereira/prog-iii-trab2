@@ -14,7 +14,7 @@ public class PedidoDao {
             Class.forName("com.mysql.cj.jdbc.Driver");
 //            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
-        }catch(Exception e){System.out.println(e);}
+        }catch(Exception e){System.out.println(e.getMessage());}
         return con;
     }
     public static int inserir(Pedido pedido) {
@@ -44,6 +44,7 @@ public class PedidoDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
 
         return status;
     }
@@ -75,7 +76,8 @@ public class PedidoDao {
             PedidoProdutoDao.inserir(pedidoProduto);
 
             con.close();
-        }catch(Exception e){e.printStackTrace();}
+        }catch (SQLException e) { e.printStackTrace(); }
+        catch(Exception e){e.printStackTrace();}
 
     }
 
@@ -88,7 +90,7 @@ public class PedidoDao {
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
                     "update Pedidos set Data_Emissao = ?, Valor_Frete = ?, Data_Entrega = ?, " +
-                            "Cliente_Id = ?" +
+                            "Clientes_ID = ?" +
                             "WHERE Numero = ?");
 
             // Parametrizar a senteça SQL;
@@ -135,7 +137,7 @@ public class PedidoDao {
         Pedido pedido = new Pedido();
         try{
             Connection con = PedidoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from Pedidos where id = ?");
+            PreparedStatement ps=con.prepareStatement("select * from Pedidos where Numero = ?");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
