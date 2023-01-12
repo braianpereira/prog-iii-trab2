@@ -42,19 +42,22 @@
                     </fieldset>
                     <label for="produtos">Produtos: </label>
                     <fieldset class="produtos">
-                        <select name="produtos[]" id="produtos">
+                        <select name="produtos" id="produtos">
                             <c:forEach var="produto" items="${produtos}">
                                 <option value="${produto.getId()}">${produto.getNome()}</option>
                             </c:forEach>
-                                <input type="number" name="prodQtd">
+                                <input type="number" name="quantidade">
                         </select>
                     </fieldset>
                     <fieldset class="produtos">
-                        <select name="produtos[]" id="produtos">
+                        <select name="produtos" id="produtos">
                             <c:forEach var="produto" items="${produtos}">
-                                <option value="2">${produto.getNome()}</option>
+                                <option value="${produto.getId()}">${produto.getNome()} UND:${produto.getUnidade()} R$:${produto.getPreco_unitario()}</option>
+
                             </c:forEach>
-                            <input type="number" name="prodQtd">
+                                <li style="color: black; font-size: 12px; border: red solid 2px; padding: 5px">${produto.getUnidade()}</li>
+                                <li style="color: black; font-size: 12px; border: red solid 2px; padding: 5px"></li>
+                            <input type="number" name="quantidade">
                         </select>
                     </fieldset>
                     <div class="botaoForm">

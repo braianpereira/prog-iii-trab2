@@ -34,35 +34,50 @@ public class Create_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
-        String teste[] = request.getParameterValues("produtos");
-        System.out.println(teste);
+//
+//        String[] produtos = request.getParameterValues("produtos");
+//        String[] quantidades =request.getParameterValues("quantidade");
+//
 
-
-//        try {
-//            String dataEmissao = request.getParameter("Data_Emissao");
-//            float valorFrete = Float.parseFloat(request.getParameter("Valor_Frete"));
-//            String dataEntrega = request.getParameter("Data_Entrega");
-//            int clienteId = Integer.parseInt(request.getParameter("Cliente_Id"));
-//
-//            Pedido pedido = new Pedido();
-//
-//            pedido.setDataEmissao(dataEmissao);
-//            pedido.setValorFrete(valorFrete);
-//            pedido.setDataEntrega(dataEntrega);
-//            pedido.setCliente(clienteId);
-//
-//            int status = PedidoDao.inserir(pedido);
-//            out.print(status);
-//            if(status>0){
-//                out.print("<p>Record saved successfully!</p>");
-//                request.getRequestDispatcher("/WEB-INF/pages/pedidos.jsp").include(request, response);
-//                response.sendRedirect(request.getContextPath() + "/pedidos");
-//            }else{
-//                out.println("Sorry! unable to save record");
-//            }
-//        } catch (Exception e) {
-//            out.println("Sorry! unable to save record");
-//            e.printStackTrace();
+//        out.println("Selected Values...");
+//        for(int i=0;i<produtos.length;i++)
+//        {
+//           out.println("<li>"+produtos[i]+ " - " +quantidades[i]+"</li>");
 //        }
+//        out.close();
+
+
+        try {
+
+            String dataEmissao = request.getParameter("Data_Emissao");
+            float valorFrete = Float.parseFloat(request.getParameter("Valor_Frete"));
+            String dataEntrega = request.getParameter("Data_Entrega");
+            int clienteId = Integer.parseInt(request.getParameter("Cliente_Id"));
+
+            String[] produtos = request.getParameterValues("produtos");
+            String[] quantidades =request.getParameterValues("quantidade");
+
+            Pedido pedido = new Pedido();
+
+            pedido.setDataEmissao(dataEmissao);
+            pedido.setValorFrete(valorFrete);
+            pedido.setDataEntrega(dataEntrega);
+            pedido.setCliente(clienteId);
+            pedido.setProduto(produtos);
+            pedido.setQuantidae(quantidades);
+
+            int status = PedidoDao.inserir(pedido);
+            out.print(status);
+            if(status>0){
+                out.print("<p>Record saved successfully!</p>");
+                request.getRequestDispatcher("/WEB-INF/pages/pedidos.jsp").include(request, response);
+                response.sendRedirect(request.getContextPath() + "/pedidos");
+            }else{
+                out.println("Sorry! unable to save record");
+            }
+        } catch (Exception e) {
+            out.println("Sorry! unable to save record");
+            e.printStackTrace();
+        }
     }
 }

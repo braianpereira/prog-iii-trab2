@@ -21,11 +21,13 @@ public class CreateServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
 
+
         try {
             String nome = request.getParameter("nome");
             String descricao = request.getParameter("descricao");
             String unidade = request.getParameter("unidade");
             float preco_unitario = Float.parseFloat(request.getParameter("preco_unitario"));
+
 
             Produto produto = new Produto();
 

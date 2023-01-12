@@ -51,7 +51,7 @@ public class PedidoDao {
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
-                    "update Clientes set Data_Emissao = ?, Valor_Frete = ?, Data_Entrega = ?, " +
+                    "update Pedidos set Data_Emissao = ?, Valor_Frete = ?, Data_Entrega = ?, " +
                             "Cliente_Id = ?" +
                             "WHERE Numero = ?");
 
@@ -84,7 +84,7 @@ public class PedidoDao {
         int status=0;
         try{
             Connection con= PedidoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("delete from pedidos where id = ?");
+            PreparedStatement ps=con.prepareStatement("delete from Pedidos where id = ?");
             ps.setInt(1, id);
 
             status=ps.executeUpdate();
@@ -99,7 +99,7 @@ public class PedidoDao {
         Pedido pedido = new Pedido();
         try{
             Connection con = PedidoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from pedidos where id = ?");
+            PreparedStatement ps=con.prepareStatement("select * from Pedidos where id = ?");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();

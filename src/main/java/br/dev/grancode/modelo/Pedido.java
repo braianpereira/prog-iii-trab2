@@ -12,6 +12,9 @@ public class Pedido {
 
     int cliente;
 
+    String[] produto;
+
+    String[] quantidae;
     public int getNumero() {
         return numero;
     }
@@ -50,5 +53,21 @@ public class Pedido {
 
     public void setCliente(int cliente) {
         this.cliente = cliente;
+    }
+
+    public String[] getProduto() {
+        return produto;
+    }
+
+    public void setProduto(String[] produto) {
+        this.produto = produto;
+    }
+
+    public String[] getQuantidae() {
+        return quantidae;
+    }
+
+    public void setQuantidae(String[] quantidae) {
+        this.quantidae = quantidae;
     }
 }
