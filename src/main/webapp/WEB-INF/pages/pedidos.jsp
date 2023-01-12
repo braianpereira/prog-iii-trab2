@@ -40,7 +40,7 @@
                         <td>${pedido.getNumero()}</td>
                         <td>${pedido.getClienteM().getNome()}</td>
                         <td>${pedido.getDataEmissao()}</td>
-                        <td>${pedido.getValorFrete()}</td>
+                        <td>${pedido.getFreteString()}</td>
                         <td>${pedido.getDataEntrega()}</td>
                         <td>${pedido.getCliente()}</td>
                         <td>

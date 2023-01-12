@@ -86,8 +86,8 @@ function maskFrete(el) {
     let value = el.value.replace('.', '').replace(',', '.')
     value = value.replace('.', '').replace(',', '').replace(/\D/g, '')
 
-    const options = { minimumFractionDigits: 1 }
-    const result = new Intl.NumberFormat('pt-BR', options).format(
+    const options = { minimumFractionDigits: 1, maximumFractionDigits: 2 }
+    const result = new Intl.NumberFormat('en', options).format(
         parseFloat(value) / 100
     )
 

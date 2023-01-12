@@ -2,6 +2,9 @@ package br.dev.grancode.modelo;
 
 import br.dev.grancode.dao.ClienteDao;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Pedido {
 
     int numero;
@@ -37,6 +40,12 @@ public class Pedido {
 
     public float getValorFrete() {
         return valorFrete;
+    }
+
+    public String getFreteString(){
+        Locale ptBr = new Locale("pt", "BR");
+        String valorString = NumberFormat.getCurrencyInstance(ptBr).format(valorFrete);
+        return valorString;
     }
 
     public void setValorFrete(float valorFrete) {

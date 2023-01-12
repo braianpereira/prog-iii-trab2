@@ -23,7 +23,7 @@
                     </fieldset>
                     <fieldset>
                         <label for="Valor_Frete">Valor Frete:  </label>
-                        <input type="text" name="Valor_Frete" required id="Valor_Frete" onkeypress="maskFrete(this)" onchange="updateTotal()" value="${pedidos.getValorFrete() ? pedidos.getValorFrete() : 0 }">
+                        <input type="number" step=".01" name="Valor_Frete" required id="Valor_Frete" onkeypress="maskFrete(this)" onchange="updateTotal()" value="${pedidos.getValorFrete() ? pedidos.getValorFrete() : 0 }">
                     </fieldset>
                     <fieldset>
                         <label for="Data_Entrega">Data de entrega :  </label>
