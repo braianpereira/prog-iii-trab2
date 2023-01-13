@@ -2,6 +2,7 @@ package br.dev.grancode.controle.pedido;
 
 import br.dev.grancode.dao.PedidoDao;
 import br.dev.grancode.dao.PedidoProdutoDao;
+import br.dev.grancode.dao.ProdutoDao;
 import br.dev.grancode.modelo.Pedido;
 import br.dev.grancode.modelo.PedidoProduto;
 import br.dev.grancode.modelo.Produto;
@@ -22,19 +23,19 @@ public class Edit_Servlet extends HttpServlet {
 
         try {
             Pedido pedido = PedidoDao.getPedidoPorId(numero);
-            List <PedidoProduto> list = PedidoProdutoDao.getAllPedidoProdutosPorId(numero);
-            List <Produto>
+            request.setAttribute("pedido", pedido);
 
-            for (PedidoProduto p: list) {
+            List <PedidoProduto> pedidoProdutos = PedidoProdutoDao.getAllPedidoProdutosPorId(numero);
+            request.setAttribute("pedidoProdutos", pedidoProdutos);
 
-            }
+            List<Produto> listProduto = ProdutoDao.getAllProdutos();
+            request.setAttribute("produtos", listProduto);
 
             String method = "editar";
 
-            request.setAttribute("pedido", pedido);
             request.setAttribute("method", method);
 
-            request.getRequestDispatcher("/WEB-INF/pages/pedidoForm.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/editPedido.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

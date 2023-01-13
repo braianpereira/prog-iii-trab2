@@ -1,16 +1,20 @@
 package br.dev.grancode.modelo;
 
+import br.dev.grancode.dao.ProdutoDao;
+
 public class PedidoProduto {
 
-    int pedidoId;
+    private int pedidoId;
 
-    int produtoId;
+    private int produtoId;
 
-    int quantidade;
+    private int quantidade;
 
-    float preco;
+    private float preco;
 
-    String unidade;
+    private String unidade;
+
+    private Produto produto;
 
     public int getPedidoId() {
         return pedidoId;
@@ -51,4 +55,11 @@ public class PedidoProduto {
     public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
+
+    public String nomeProd(){
+        produto = ProdutoDao.getProdutoPorId(produtoId);
+
+        return produto.getNome();
+    }
+
 }

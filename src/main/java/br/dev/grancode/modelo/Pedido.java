@@ -14,21 +14,21 @@ import java.util.Locale;
 
 public class Pedido {
 
-    int numero;
+    private int numero;
 
-    String dataEmissao;
+    private String dataEmissao;
 
-    float valorFrete;
+    private float valorFrete;
 
-    String dataEntrega;
+    private  String dataEntrega;
 
-    int cliente;
+    private int cliente;
 
-    Cliente clienteM;
+    private Cliente clienteM;
 
-    String[] produto;
+    private String[] produto;
 
-    String[] quantidae;
+    private String[] quantidae;
     public int getNumero() {
         return numero;
     }
@@ -112,8 +112,6 @@ public class Pedido {
 
         SimpleDateFormat formatDest = new SimpleDateFormat("dd/MM/yyyy");
         String dataString = formatDest.format(data);
-
-        System.out.println(dataString);
         return dataString;
     }
 

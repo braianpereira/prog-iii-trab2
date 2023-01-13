@@ -55,23 +55,37 @@ public class PedidoDao {
 
             Connection con= PedidoDao.getConnection();
 
-            PreparedStatement ps=con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?;");
-            ps.setInt(1, Integer.parseInt(produto));
-            ResultSet rs = ps.executeQuery();
+            try {
 
-            pedidoProduto.setUnidade(rs.getString(1));
-            pedidoProduto.setPreco(rs.getFloat(2));
+                PreparedStatement ps=con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?;");
+                ps.setInt(1, Integer.parseInt(produto));
+                ResultSet rs = ps.executeQuery();
 
-            ps.close();
-            rs.close();
+                if(rs.next()) {
+                    pedidoProduto.setUnidade(rs.getString(1));
+                    pedidoProduto.setPreco(rs.getFloat(2));
+                }
+                ps.close();
+                rs.close();
 
-            PreparedStatement pd=con.prepareStatement("SELECT Numero FROM Pedidos ORDER BY Numero DESC LIMIT 1;");
-            ResultSet rd = pd.executeQuery();
+            }catch (SQLException e) { e.printStackTrace(); }
+            catch(Exception e){e.printStackTrace();}
 
+            try {
 
-            pedidoProduto.setProdutoId(Integer.parseInt(produto));
-            pedidoProduto.setPedidoId(rd.getInt(1));
-            pedidoProduto.setQuantidade(Integer.parseInt(qtd));
+                PreparedStatement pd=con.prepareStatement("SELECT Numero FROM Pedidos ORDER BY Numero DESC LIMIT 1;");
+                ResultSet rd = pd.executeQuery();
+                if(rd.next()) {
+                    pedidoProduto.setPedidoId(rd.getInt(1));
+                }
+
+                pedidoProduto.setProdutoId(Integer.parseInt(produto));
+                pedidoProduto.setQuantidade(Integer.parseInt(qtd));
+
+                pd.close();
+                rd.close();
+            }catch (SQLException e) { e.printStackTrace(); }
+            catch(Exception e){e.printStackTrace();}
 
             PedidoProdutoDao.inserir(pedidoProduto);
 
