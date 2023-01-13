@@ -1,6 +1,5 @@
 package br.dev.grancode.dao;
 
-import br.dev.grancode.modelo.Cliente;
 import br.dev.grancode.modelo.Produto;
 
 import java.sql.*;

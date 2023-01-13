@@ -100,47 +100,49 @@ public class PedidoProdutoDao {
         return status;
     }
 
-    public static PedidoProduto getPedidoProdutoPorId(int id) {
-        PedidoProduto pedidoProduto = new PedidoProduto();
-        try{
-            Connection con = PedidoProdutoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from from Produtos_has_Pedidos where Pedidos_Numero = ?");
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-
-            if(rs.next()){
-                //Get DataBase Fields to Cliente Object
-                FieldsGet(rs, pedidoProduto);
-
-            }
-            con.close();
-        }catch(Exception ex){ex.printStackTrace();}
-
-        return pedidoProduto;
-    }
-
-//    public static List<PedidoProduto> getAllPedidoProdutos() {
-//        List<PedidoProduto> list = new ArrayList<>();
-//
+//    public static PedidoProduto getPedidoProdutoPorId(int id) {
+//        PedidoProduto pedidoProduto = new PedidoProduto();
 //        try{
 //            Connection con = PedidoProdutoDao.getConnection();
-//            PreparedStatement ps=con.prepareStatement("select * from pedidoProdutos");
+//            PreparedStatement ps=con.prepareStatement("select * from from Produtos_has_Pedidos where Pedidos_Numero = ?");
+//            ps.setInt(1, id);
+//
 //            ResultSet rs = ps.executeQuery();
 //
-//            while (rs.next()){
-//                PedidoProduto pedidoProduto = new PedidoProduto();
-//
+//            if(rs.next()){
 //                //Get DataBase Fields to Cliente Object
 //                FieldsGet(rs, pedidoProduto);
 //
-//                list.add(pedidoProduto);
 //            }
 //            con.close();
 //        }catch(Exception ex){ex.printStackTrace();}
 //
-//        return list;
+//        return pedidoProduto;
 //    }
+
+    public static List<PedidoProduto> getAllPedidoProdutosPorId(int id) {
+        List<PedidoProduto> list = new ArrayList<>();
+
+        try{
+            Connection con = PedidoProdutoDao.getConnection();
+            PreparedStatement ps=con.prepareStatement("select * from from Produtos_has_Pedidos where Pedidos_Numero = ?");
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                PedidoProduto pedidoProduto = new PedidoProduto();
+
+                //Get DataBase Fields to Cliente Object
+                FieldsGet(rs, pedidoProduto);
+
+                list.add(pedidoProduto);
+            }
+            con.close();
+        }catch(Exception ex){ex.printStackTrace();}
+
+        return list;
+    }
 
     private static void FieldsGet(ResultSet rs, PedidoProduto pedidoProduto) throws SQLException {
         pedidoProduto.setProdutoId(rs.getInt(1));

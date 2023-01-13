@@ -6,6 +6,9 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -111,6 +114,13 @@ public class Pedido {
         String dataString = formatDest.format(data);
 
         System.out.println(dataString);
+        return dataString;
+    }
+
+    public String getDataAtual(){
+        SimpleDateFormat formatDest = new SimpleDateFormat("yyyy-MM-dd");
+        String dataString = formatDest.format(LocalDate.now());
+
         return dataString;
     }
 }

@@ -39,13 +39,13 @@
                     <tr>
                         <td>${pedido.getNumero()}</td>
                         <td>${pedido.getClienteM().getNome()}</td>
-                        <td class="data">${pedido.getDataEmissaoPt()}</td>
+                        <td>${pedido.getDataEmissaoPt()}</td>
                         <td>${pedido.getFreteString()}</td>
-                        <td class="data">${pedido.getDataEntregaPt()}</td>
+                        <td>${pedido.getDataEntregaPt()}</td>
                         <td>${pedido.getCliente()}</td>
                         <td>
-                            <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/pedidos/editar?id=${pedido.getNumero()}">Atualizar</a></button>
-                            <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/pedidos/remover?id=${pedido.getNumero()}">Excluir</a></button>
+                            <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/pedidos/editar?numero=${pedido.getNumero()}">Atualizar</a></button>
+                            <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/pedidos/remover?numero=${pedido.getNumero()}">Excluir</a></button>
                         </td>
                     </tr>
                 </c:forEach>

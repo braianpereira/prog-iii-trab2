@@ -1,4 +1,6 @@
-
+/*
+* Validações cliente
+* */
 function validarCpf(evt) {
     var theEvent = evt || window.event;
 
@@ -16,64 +18,159 @@ function validarCpf(evt) {
         if(theEvent.preventDefault) theEvent.preventDefault();
     }
 
-    if(evt.target.value.length > 11){
+    if(evt.target.value.length >= 11){
         theEvent.returnValue = false;
         if(theEvent.preventDefault) theEvent.preventDefault();
     }
 }
+
+
+function validarNomeCliente(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length >= 100){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+function validarRG(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 15){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarOrgaoEmissor(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 20){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarEmail(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length >= 100){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarTelefoneCliente(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 20){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarLogradouro(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 100){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+function validarNumero(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 20){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarBairro(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 45){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarCidade(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 45){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarEstado(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 2){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function validarRG(evt) {
+    var theEvent = evt || window.event;
+
+
+    if(evt.target.value.length >= 15){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+/*
+* Validações usuario
+* */
 
 function validarUsername(evt) {
     var theEvent = evt || window.event;
 
-    if(evt.target.value.length > 15){
+    if(evt.target.value.length >= 15){
         theEvent.returnValue = false;
         if(theEvent.preventDefault) theEvent.preventDefault();
     }
 }
 
-function validarTelefone(evt) {
+function validarTelefoneUsuario(evt) {
     var theEvent = evt || window.event;
 
-    if(evt.target.value.length > 20){
+    if (evt.target.value.length >= 20) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+/*
+* Validações produto
+* */
+function validarNomeProduto(evt) {
+    var theEvent = evt || window.event;
+
+    if (evt.target.value.length >= 100) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+function validarUnidade(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length >= 3){
         theEvent.returnValue = false;
         if(theEvent.preventDefault) theEvent.preventDefault();
     }
 }
-
-function validarNome(evt) {
-    var theEvent = evt || window.event;
-
-    if(evt.target.value.length > 100){
-        theEvent.returnValue = false;
-        if(theEvent.preventDefault) theEvent.preventDefault();
-    }
-
-}function validarUnidade(evt) {
-    var theEvent = evt || window.event;
-
-    if(evt.target.value.length > 3){
-        theEvent.returnValue = false;
-        if(theEvent.preventDefault) theEvent.preventDefault();
-    }
-
-}function validarNome(evt) {
-    var theEvent = evt || window.event;
-
-    if(evt.target.value.length > 100){
-        theEvent.returnValue = false;
-        if(theEvent.preventDefault) theEvent.preventDefault();
-    }
-
-}function validarNome(evt) {
-    var theEvent = evt || window.event;
-
-    if(evt.target.value.length > 100){
-        theEvent.returnValue = false;
-        if(theEvent.preventDefault) theEvent.preventDefault();
-    }
-}
-
-
 
 function addProduto() {
     let produtos = document.querySelector(".produtos")
@@ -121,18 +218,11 @@ function maskFrete(el) {
     let value = el.value.replace('.', '').replace(',', '.')
     value = value.replace('.', '').replace(',', '').replace(/\D/g, '')
 
-    const options = { minimumFractionDigits: 1, maximumFractionDigits: 2 }
+    const options = {minimumFractionDigits: 1, maximumFractionDigits: 2}
     const result = new Intl.NumberFormat('en', options).format(
         parseFloat(value) / 100
     )
 
     el.value = result
-
 }
 
-function maskFrete(){
-    let datas = document.getElementsByClassName('data')
-    for (const data in datas) {
-        data.replace('-', "/")
-    }
-}

@@ -1,8 +1,6 @@
 package br.dev.grancode.controle.produto;
 
-import br.dev.grancode.dao.ClienteDao;
 import br.dev.grancode.dao.ProdutoDao;
-import br.dev.grancode.modelo.Cliente;
 import br.dev.grancode.modelo.Produto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

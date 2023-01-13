@@ -23,7 +23,7 @@
                     </fieldset>
                     <fieldset>
                         <label for="Valor_Frete">Valor Frete:  </label>
-                        <input type="number" step=".01" name="Valor_Frete" required id="Valor_Frete" onkeypress="maskFrete(this)" onchange="updateTotal()" value="${pedidos.getValorFrete() ? pedidos.getValorFrete() : 0 }">
+                        <input type="number" step=".01" name="Valor_Frete" required id="Valor_Frete" onkeypress="maskFrete(this)" onchange="updateTotal()" value="${pedidos.getValorFrete()}">
                     </fieldset>
                     <fieldset>
                         <label for="Data_Entrega">Data de entrega :  </label>
@@ -57,6 +57,7 @@
 
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
+                        <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
                         <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
                     </div>
                 </fieldset>
