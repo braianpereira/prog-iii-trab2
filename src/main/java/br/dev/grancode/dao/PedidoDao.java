@@ -7,16 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedidoDao {
-    public static Connection getConnection(){
-        Connection con=null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
-        }catch(Exception e){System.out.println(e.getMessage());}
-        return con;
-    }
+public class PedidoDao extends Dao{
     public static int inserir(Pedido pedido) {
         int status = 0;
 
@@ -87,7 +78,7 @@ public class PedidoDao {
             }catch (SQLException e) { e.printStackTrace(); }
             catch(Exception e){e.printStackTrace();}
 
-            PedidoProdutoDao.inserir(pedidoProduto);
+            PedidoProdutoDao.inserir(pedidoProduto, con);
 
             con.close();
         }catch (SQLException e) { e.printStackTrace(); }
@@ -103,9 +94,7 @@ public class PedidoDao {
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
-                    "update Pedidos set Data_Emissao = ?, Valor_Frete = ?, Data_Entrega = ?, " +
-                            "Clientes_ID = ?" +
-                            "WHERE Numero = ?");
+                    "update Pedidos set Data_Emissao = ?, Valor_Frete = ?, Data_Entrega = ?, Clientes_ID = ? WHERE Numero = ?");
 
             // Parametrizar a senteça SQL;
             setFieldspedido(pedido, ps);
@@ -113,6 +102,16 @@ public class PedidoDao {
 
             // Executar a Senteça;
             status = ps.executeUpdate();
+
+            ps = con.prepareStatement("DELETE FROM Produtos_has_Pedidos where Pedidos_Numero = ?;");
+            ps.setInt(1, pedido.getNumero());
+            status = ps.executeUpdate();
+
+
+            for(int i = 0; i < pedido.getProduto().length; i++){
+                updateProdutoPedido(pedido.getProduto()[i], pedido.getQuantidae()[i], pedido.getNumero());
+            }
+
 
             // Limpar a memória
             ps.close();
@@ -122,6 +121,53 @@ public class PedidoDao {
         }
 
         return status;
+    }
+
+    private static void updateProdutoPedido(String produto, String qtd, int numeroPedido) throws SQLException {
+        try{
+            PedidoProduto pedidoProduto = new PedidoProduto();
+
+            Connection con= PedidoDao.getConnection();
+
+            try {
+//                con.setAutoCommit(false);
+
+                PreparedStatement ps = con.prepareStatement("SELECT Unidade, Preco_Unitario from Produtos where ID = ?;");
+                ps.setInt(1, Integer.parseInt(produto));
+                ResultSet rs = ps.executeQuery();
+
+                if(rs.next()) {
+                    pedidoProduto.setUnidade(rs.getString(1));
+                    pedidoProduto.setPreco(rs.getFloat(2));
+                }
+
+                ps.close();
+                rs.close();
+
+
+                pedidoProduto.setPedidoId(numeroPedido);
+
+
+                pedidoProduto.setProdutoId(Integer.parseInt(produto));
+                pedidoProduto.setQuantidade(Integer.parseInt(qtd));
+
+                PedidoProdutoDao.inserir(pedidoProduto, con);
+
+//                con.commit();
+            }catch (SQLException e) {
+                e.printStackTrace();
+//                con.rollback();
+            }
+            catch(Exception e){e.printStackTrace();}
+            finally {
+
+                con.close();
+            }
+
+
+        }catch (SQLException e) { e.printStackTrace(); }
+        catch(Exception e){e.printStackTrace();}
+
     }
 
 
@@ -136,7 +182,13 @@ public class PedidoDao {
         int status=0;
         try{
             Connection con= PedidoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("delete from Pedidos where Numero = ?");
+
+            PreparedStatement ps = con.prepareStatement("delete from Produtos_has_Pedidos where Pedidos_Numero = ?");
+            ps.setInt(1, id);
+
+            status=ps.executeUpdate();
+
+            ps = con.prepareStatement("delete from Pedidos where Numero = ?");
             ps.setInt(1, id);
 
             status=ps.executeUpdate();
@@ -147,18 +199,20 @@ public class PedidoDao {
         return status;
     }
 
-    public static Pedido getPedidoPorId(int id) {
+    public static Pedido getPedidoPorNumero(int numero) {
         Pedido pedido = new Pedido();
         try{
             Connection con = PedidoDao.getConnection();
             PreparedStatement ps=con.prepareStatement("select * from Pedidos where Numero = ?");
-            ps.setInt(1, id);
+            ps.setInt(1, numero);
 
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()){
                 //Get DataBase Fields to Cliente Object
                 FieldsGet(rs, pedido);
+
+                pedido.setPedidoProduto(PedidoProdutoDao.getAllPedidoProdutosPorId(rs.getInt("Numero")));
 
             }
             con.close();
@@ -180,6 +234,8 @@ public class PedidoDao {
 
                 //Get DataBase Fields to Cliente Object
                 FieldsGet(rs, pedido);
+
+                pedido.setPedidoProduto(PedidoProdutoDao.getAllPedidoProdutosPorId(pedido.getNumero()));
 
                 list.add(pedido);
             }
