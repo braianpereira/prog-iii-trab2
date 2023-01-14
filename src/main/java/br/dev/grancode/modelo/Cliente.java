@@ -1,24 +1,14 @@
 package br.dev.grancode.modelo;
 
-public class Cliente {
+public class Cliente extends Pessoa{
     private int id;
-    private String nome;
-    private String nascimento;
-    private String cpf;
     private String rg;
     private String orgao_emissor;
-    private String email;
-    private String telefone;
-    private boolean whats;
     private String logradouro;
     private String numero;
     private String bairro;
     private String cidade;
     private String estado;
-
-    public String getCpf() {
-        return cpf;
-    }
 
     public int getId() {
         return id;
@@ -26,50 +16,6 @@ public class Cliente {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(String nascimento) {
-        this.nascimento = nascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public boolean isWhats() {
-        return whats;
-    }
-
-    public void setWhats(boolean whats) {
-        this.whats = whats;
     }
 
     public String getRg() {

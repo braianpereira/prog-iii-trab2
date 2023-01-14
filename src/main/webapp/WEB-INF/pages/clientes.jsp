@@ -34,10 +34,11 @@
                 </tr>
                 </thead>
                 <tbody>
+                <jsp:useBean id="clientes" scope="request" type="java.util.List"/>
                 <c:forEach var="cliente" items="${clientes}">
                     <tr>
                         <td>${cliente.getNome()}</td>
-                        <td>${cliente.getNascimento()}</td>
+                        <td>${cliente.getNascimentoBr()}</td>
                         <td>${cliente.getEmail()}</td>
                         <td>${cliente.getCpf()}</td>
                         <td>

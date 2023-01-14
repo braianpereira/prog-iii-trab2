@@ -1,23 +1,12 @@
 package br.dev.grancode.dao;
 
 import br.dev.grancode.modelo.Cliente;
-import br.dev.grancode.modelo.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDao {
-    public static Connection getConnection(){
-        Connection con=null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
-        }catch(Exception e){System.out.println(e);}
-        return con;
-    }
-
+public class ClienteDao extends Dao{
     public static int inserir(Cliente cliente) {
         int status = 0;
 

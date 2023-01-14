@@ -1,8 +1,10 @@
 package br.dev.grancode.controle.pedido;
 
+import br.dev.grancode.dao.ClienteDao;
 import br.dev.grancode.dao.PedidoDao;
 import br.dev.grancode.dao.PedidoProdutoDao;
 import br.dev.grancode.dao.ProdutoDao;
+import br.dev.grancode.modelo.Cliente;
 import br.dev.grancode.modelo.Pedido;
 import br.dev.grancode.modelo.PedidoProduto;
 import br.dev.grancode.modelo.Produto;
@@ -22,7 +24,7 @@ public class Edit_Servlet extends HttpServlet {
         int numero = Integer.parseInt(numeroParam);
 
         try {
-            Pedido pedido = PedidoDao.getPedidoPorId(numero);
+            Pedido pedido = PedidoDao.getPedidoPorNumero(numero);
             request.setAttribute("pedido", pedido);
 
             List <PedidoProduto> pedidoProdutos = PedidoProdutoDao.getAllPedidoProdutosPorId(numero);
@@ -30,6 +32,9 @@ public class Edit_Servlet extends HttpServlet {
 
             List<Produto> listProduto = ProdutoDao.getAllProdutos();
             request.setAttribute("produtos", listProduto);
+
+            List<Cliente> listCliente = ClienteDao.getAllClientes();
+            request.setAttribute("clientes", listCliente);
 
             String method = "editar";
 
@@ -45,21 +50,12 @@ public class Edit_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
-//
-//        String[] produtos = request.getParameterValues("produtos");
-//        String[] quantidades =request.getParameterValues("quantidade");
-//
-
-//        out.println("Selected Values...");
-//        for(int i=0;i<produtos.length;i++)
-//        {
-//           out.println("<li>"+produtos[i]+ " - " +quantidades[i]+"</li>");
-//        }
-//        out.close();
-
 
         try {
             int numero = Integer.parseInt(request.getParameter("numero"));
+
+
+
             String dataEmissao = request.getParameter("Data_Emissao");
             float valorFrete = Float.parseFloat(request.getParameter("Valor_Frete"));
             String dataEntrega = request.getParameter("Data_Entrega");
@@ -68,7 +64,8 @@ public class Edit_Servlet extends HttpServlet {
             String[] produtos = request.getParameterValues("produtos");
             String[] quantidades =request.getParameterValues("quantidade");
 
-            Pedido pedido = new Pedido();
+            Pedido pedido = PedidoDao.getPedidoPorNumero(numero);
+
 
             pedido.setDataEmissao(dataEmissao);
             pedido.setValorFrete(valorFrete);
@@ -77,7 +74,9 @@ public class Edit_Servlet extends HttpServlet {
             pedido.setProduto(produtos);
             pedido.setQuantidae(quantidades);
 
-            int status = PedidoDao.inserir(pedido);
+            int status = PedidoDao.atualizar(pedido);
+
+
             out.print(status);
             if(status>0){
                 out.print("<p>Record saved successfully!</p>");

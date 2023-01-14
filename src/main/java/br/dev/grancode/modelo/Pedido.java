@@ -2,14 +2,12 @@ package br.dev.grancode.modelo;
 
 import br.dev.grancode.dao.ClienteDao;
 
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Pedido {
@@ -25,6 +23,8 @@ public class Pedido {
     private int cliente;
 
     private Cliente clienteM;
+
+    private List<PedidoProduto> pedidoProduto;
 
     private String[] produto;
 
@@ -55,8 +55,7 @@ public class Pedido {
 
     public String getFreteString(){
         Locale ptBr = new Locale("pt", "BR");
-        String valorString = NumberFormat.getCurrencyInstance(ptBr).format(valorFrete);
-        return valorString;
+        return NumberFormat.getCurrencyInstance(ptBr).format(valorFrete);
     }
 
     public void setValorFrete(float valorFrete) {
@@ -105,10 +104,17 @@ public class Pedido {
         this.quantidae = quantidae;
     }
 
+    public List<PedidoProduto> getPedidoProduto() {
+        return pedidoProduto;
+    }
+
+    public void setPedidoProduto(List<PedidoProduto> pedidoProduto) {
+        this.pedidoProduto = pedidoProduto;
+    }
+
     public String dataString(String datas) throws ParseException {
         SimpleDateFormat formaOring = new SimpleDateFormat("yyyy-MM-dd");
         Date data = formaOring.parse(datas);
-        System.out.println(data);
 
         SimpleDateFormat formatDest = new SimpleDateFormat("dd/MM/yyyy");
         String dataString = formatDest.format(data);
@@ -120,5 +126,18 @@ public class Pedido {
         String dataString = formatDest.format(LocalDate.now());
 
         return dataString;
+    }
+
+    public String getTotal() {
+        float total = 0;
+        for (PedidoProduto item:
+             this.getPedidoProduto()) {
+            total += item.getPreco() * item.getQuantidade();
+        }
+
+        total += this.getValorFrete();
+
+        Locale ptBr = new Locale("pt", "BR");
+        return NumberFormat.getCurrencyInstance(ptBr).format(total);
     }
 }

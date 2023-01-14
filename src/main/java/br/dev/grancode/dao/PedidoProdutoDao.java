@@ -6,21 +6,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedidoProdutoDao {
-    public static Connection getConnection(){
-        Connection con=null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
-        }catch(Exception e){System.out.println(e);}
-        return con;
-    }
-    public static int inserir(PedidoProduto pedidoProduto) {
+public class PedidoProdutoDao extends Dao{
+    public static int inserir(PedidoProduto pedidoProduto, Connection con) {
         int status = 0;
 
         try {
-            Connection con = PedidoProdutoDao.getConnection();
+//            Connection con = PedidoProdutoDao.getConnection();
 
             // Preparar uma sentença SQL;
             PreparedStatement ps = con.prepareStatement(
@@ -85,7 +76,7 @@ public class PedidoProdutoDao {
         ps.setString(5, pedidoProduto.getUnidade());
     }
 
-    public static int excluir(int Produto_ID, int Pedido_Numero) {
+    public static int excluir(int Pedido_Numero) {
         int status=0;
         try{
             Connection con= PedidoProdutoDao.getConnection();
@@ -125,7 +116,7 @@ public class PedidoProdutoDao {
 
         try{
             Connection con = PedidoProdutoDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from from Produtos_has_Pedidos where Pedidos_Numero = ?");
+            PreparedStatement ps=con.prepareStatement("select * from Produtos_has_Pedidos where Pedidos_Numero = ?");
 
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

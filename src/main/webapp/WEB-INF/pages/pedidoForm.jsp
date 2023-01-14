@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<tags:layout><%--@elvariable id="method" type="java.lang.String"--%>
+<tags:layout>
+    <%--@elvariable id="method" type="java.lang.String"--%>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Cadastro</h1>
         <form action="${pageContext.request.contextPath}/pedidos/${method}" method="post">
@@ -23,7 +24,7 @@
                     </fieldset>
                     <fieldset>
                         <label for="Valor_Frete">Valor Frete:  </label>
-                        <input type="number" step=".01" name="Valor_Frete" required id="Valor_Frete" onkeypress="maskFrete(this)" onchange="updateTotal()" value="${pedidos.getValorFrete()}">
+                        <input type="number" step=".01" name="Valor_Frete" required id="Valor_Frete"  onchange="updateTotal()">
                     </fieldset>
                     <fieldset>
                         <label for="Data_Entrega">Data de entrega :  </label>
@@ -42,6 +43,7 @@
                     <div class="produtos">
                         <fieldset>
                             <select name="produtos" onchange="updateTotal()">
+                                <jsp:useBean id="produtos" scope="request" type="java.util.List"/>
                                 <c:forEach var="produto" items="${produtos}">
                                     <option value="${produto.getId()}" preco="${produto.getPreco_unitario()}" >${produto.getNome()} R$ ${produto.getPrecoBr()} ${produto.getUnidade()}</option>
                                 </c:forEach>

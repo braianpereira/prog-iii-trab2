@@ -2,22 +2,11 @@ package br.dev.grancode.dao;
 
 import br.dev.grancode.modelo.Usuario;
 
-import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-public class UsuarioDao {
-    public static Connection getConnection(){
-        Connection con=null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
-        }catch(Exception e){System.out.println(e);}
-        return con;
-    }
+public class UsuarioDao extends Dao{
 
     public static int inserir(Usuario usuario) {
         int status = 0;
@@ -87,7 +76,7 @@ public class UsuarioDao {
     private static void FieldsSet(Usuario usuario, PreparedStatement ps) throws SQLException {
         ps.setString(1, usuario.getCpf());
         ps.setString(2, usuario.getNome());
-        ps.setDate(3, Date.valueOf(usuario.getNascimento().toString()));
+        ps.setDate(3, Date.valueOf(usuario.getNascimento()));
         ps.setString(4, usuario.getEmail());
         ps.setString(5, usuario.getTelefone());
         ps.setBoolean(6, usuario.isWhats());
@@ -117,20 +106,23 @@ public class UsuarioDao {
             ps.setString(1,cpf);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                usuario.setCpf(rs.getString(1));
-                usuario.setNome(rs.getString(2));
-                usuario.setNascimento(rs.getString(3));
-                usuario.setEmail(rs.getString(4));
-                usuario.setTelefone(rs.getString(5));
-                usuario.setWhats(rs.getBoolean(6));
-                usuario.setUsername(rs.getString(7));
-                usuario.setSenha(rs.getString(8));
-
+                usuarioGetFields(usuario, rs);
             }
             con.close();
         }catch(Exception ex){ex.printStackTrace();}
 
         return usuario;
+    }
+
+    private static void usuarioGetFields(Usuario usuario, ResultSet rs) throws SQLException {
+        usuario.setCpf(rs.getString(1));
+        usuario.setNome(rs.getString(2));
+        usuario.setNascimento(rs.getString(3));
+        usuario.setEmail(rs.getString(4));
+        usuario.setTelefone(rs.getString(5));
+        usuario.setWhats(rs.getBoolean(6));
+        usuario.setUsername(rs.getString(7));
+        usuario.setSenha(rs.getString(8));
     }
 
     public static List<Usuario> getAllUsuarios() {
@@ -144,14 +136,7 @@ public class UsuarioDao {
             while (rs.next()){
                 Usuario usuario = new Usuario();
 
-                usuario.setCpf(rs.getString(1));
-                usuario.setNome(rs.getString(2));
-                usuario.setNascimento(rs.getString(3));
-                usuario.setEmail(rs.getString(4));
-                usuario.setTelefone(rs.getString(5));
-                usuario.setWhats(rs.getBoolean(6));
-                usuario.setUsername(rs.getString(7));
-                usuario.setSenha(rs.getString(8));
+                usuarioGetFields(usuario, rs);
 
                 list.add(usuario);
             }

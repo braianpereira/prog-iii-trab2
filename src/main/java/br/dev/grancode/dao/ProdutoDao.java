@@ -6,16 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoDao {
-    public static Connection getConnection(){
-        Connection con=null;
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "laravel", "12345");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
-        }catch(Exception e){System.out.println(e);}
-        return con;
-    }
+public class ProdutoDao extends Dao{
+
     public static int inserir(Produto produto) {
         int status = 0;
 

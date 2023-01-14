@@ -34,18 +34,6 @@ public class Create_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
-//
-//        String[] produtos = request.getParameterValues("produtos");
-//        String[] quantidades =request.getParameterValues("quantidade");
-//
-
-//        out.println("Selected Values...");
-//        for(int i=0;i<produtos.length;i++)
-//        {
-//           out.println("<li>"+produtos[i]+ " - " +quantidades[i]+"</li>");
-//        }
-//        out.close();
-
 
         try {
 

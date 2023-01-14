@@ -27,14 +27,15 @@
                 <thead id="aa">
                 <tr>
                     <th>Nemero do pedido</th>
-                    <th>Nome</th>
+                    <th>Cliente</th>
                     <th>Data de emissão</th>
                     <th>Valor do frete</th>
                     <th>Data de entrega</th>
-                    <th>Cliente</th>
+                    <th>Valor Total</th>
                 </tr>
                 </thead>
                 <tbody>
+                <jsp:useBean id="pedidos" scope="request" type="java.util.List"/>
                 <c:forEach var="pedido" items="${pedidos}">
                     <tr>
                         <td>${pedido.getNumero()}</td>
@@ -42,7 +43,7 @@
                         <td>${pedido.getDataEmissaoPt()}</td>
                         <td>${pedido.getFreteString()}</td>
                         <td>${pedido.getDataEntregaPt()}</td>
-                        <td>${pedido.getCliente()}</td>
+                        <td>${pedido.getTotal()}</td>
                         <td>
                             <button class="botaoTabela" type="button" name="atualizar"><a href="${pageContext.request.contextPath}/pedidos/editar?numero=${pedido.getNumero()}">Atualizar</a></button>
                             <button class="botaoTabela" type="button" name="excluir"><a href="${pageContext.request.contextPath}/pedidos/remover?numero=${pedido.getNumero()}">Excluir</a></button>

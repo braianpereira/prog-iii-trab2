@@ -8,8 +8,6 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.Calendar;
 
 @WebServlet(name = "UserCreateServlet", value = "/usuarios/novo")
 public class CreateServlet extends HttpServlet {
@@ -32,7 +30,7 @@ public class CreateServlet extends HttpServlet {
             String nascimento = request.getParameter("nascimento");
             String email = request.getParameter("email");
             String telefone = request.getParameter("telefone");
-            Boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
+            boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
             String username = request.getParameter("username");
             String senha = request.getParameter("senha");
 
