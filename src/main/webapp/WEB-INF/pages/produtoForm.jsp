@@ -36,7 +36,9 @@
                     </fieldset>
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
-                        <a href="${request.getContextPath()}/produtos/"><input class="botaoTabela" type="button" value="Voltar"></a>
+
+                        <a href="${pageContext.request.contextPath}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
+
                     </div>
                 </fieldset>
             </div>

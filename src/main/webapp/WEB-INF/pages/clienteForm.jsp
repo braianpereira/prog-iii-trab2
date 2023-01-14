@@ -1,8 +1,4 @@
-<%@ page import="br.dev.grancode.modelo.Pedido" %>
-<%@ page import="br.dev.grancode.modelo.Produto" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="br.dev.grancode.dao.ProdutoDao" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Bráian Pereira
   Date: 27/12/2022
@@ -66,10 +62,11 @@
                         <label for="estado">Estado: </label>
                         <input type="text" name="estado" id="estado" maxlength="2" required value="${cliente.getEstado()}">
                     </fieldset>
-
+                    
                     <div class="botaoForm">
-                        <input class="botaoTabela" name="submit" type="submit" value="enviar">
-                        <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
+                        <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
+                        <a href="${pageContext.request.contextPath}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
+
                     </div>
                 </fieldset>
             </div>

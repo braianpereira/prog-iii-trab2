@@ -11,13 +11,18 @@ import java.util.List;
 @WebServlet(name = "SelectServlet", urlPatterns = {"/clientes/*"})
 public class SelectServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {;
-        List<Cliente> list = ClienteDao.getAllClientes();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
-        request.setAttribute("clientes", list);
-        request.getRequestDispatcher("/WEB-INF/pages/clientes.jsp").forward(request, response);
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
+        if (logado != null && logado.equals(true)) {
+            List<Cliente> list = ClienteDao.getAllClientes();
+
+            request.setAttribute("clientes", list);
+            request.getRequestDispatcher("/WEB-INF/pages/clientes.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
     }
-
-
 }

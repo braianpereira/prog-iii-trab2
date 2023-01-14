@@ -45,13 +45,13 @@
                         <input type="text" name="username" id="username"  required value="${usuario.getUsername()}">
                     </fieldset>
                     <fieldset>
-                        <label for="senha">Senha: </label>
-                        <input type="password" required name="senha" id="senha">
+                        <label for="senha">Nova Senha: </label>
+                        <input type="password" <c:if test="${method == 'editar'}">required</c:if> name="senha" id="senha">
                     </fieldset>
 
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
-                        <a href="${request.getContextPath()}/usuarios/"><input class="botaoTabela" type="button" value="Voltar"></a>
+                        <a href="${pageContext.request.contextPath}/usuarios/"><input class="botaoTabela" type="button" value="Voltar"></a>
                     </div>
                 </fieldset>
             </div>

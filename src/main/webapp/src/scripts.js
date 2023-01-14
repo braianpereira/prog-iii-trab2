@@ -24,6 +24,7 @@ function validarCpf(evt) {
     }
 }
 
+
 function validaCliente(evt){
    /*
    * Nome
@@ -41,6 +42,7 @@ function validaCliente(evt){
         nome.focus()
         return false
     }
+
 
     /*
     * Data de Nascimento

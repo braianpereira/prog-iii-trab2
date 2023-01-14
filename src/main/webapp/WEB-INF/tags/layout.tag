@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
 </head>
 
 <body>
@@ -26,6 +26,7 @@
                 <li><a href="<%=request.getContextPath()%>/clientes/">Clientes</a></li>
                 <li><a href="<%=request.getContextPath()%>/produtos/">Produtos</a></li>
                 <li><a href="<%=request.getContextPath()%>/pedidos/">Pedidos</a></li>
+                <li><a href="<%=request.getContextPath()%>/logout">Sair</a></li>
             </ul>
         </div>
     </nav>
@@ -43,6 +44,6 @@
             </span>
     </div>
 </footer>
-<script src="<%=request.getContextPath()%>/src/scripts.js" > </script>
+<script src="${pageContext.request.contextPath}/src/scripts.js" > </script>
 </body>
 </html>
