@@ -12,7 +12,7 @@
     <%--@elvariable id="method" type="java.lang.String"--%>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Cadastro</h1>
-        <form action="${pageContext.request.contextPath}/pedidos/${method}" method="post">
+        <form action="${pageContext.request.contextPath}/pedidos/${method}" id="formPedido" method="post">
 
             <div class="cadastro">
                 <fieldset>
@@ -59,8 +59,7 @@
 
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
-                        <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
-                        <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
+                        <a href="${request.getContextPath()}/pedidos/"><input class="botaoTabela" type="button" value="Voltar"></a>
                     </div>
                 </fieldset>
             </div>

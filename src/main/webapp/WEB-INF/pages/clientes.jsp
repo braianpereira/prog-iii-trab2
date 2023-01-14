@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <jsp:useBean id="clientes" scope="request" type="java.util.List"/>
+<%--                <jsp:useBean id="clientes" scope="request" type="java.util.List"/>--%>
                 <c:forEach var="cliente" items="${clientes}">
                     <tr>
                         <td>${cliente.getNome()}</td>

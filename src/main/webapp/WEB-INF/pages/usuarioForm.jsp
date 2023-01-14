@@ -12,7 +12,7 @@
 <tags:layout>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Cadastro</h1>
-        <form action="${pageContext.request.contextPath}/usuarios/${method}" method="post">
+        <form action="${pageContext.request.contextPath}/usuarios/${method}" id="formUsuario" method="post">
 
             <div class="cadastro">
                 <fieldset>
@@ -38,11 +38,11 @@
                         <input type="checkbox" name="whats" id="whats" <c:if test="${usuario.isWhats()}">checked</c:if>>
                         <label for="whats">É WhatsApp </label>
                         <label for="telefone">Telefone: </label>
-                        <input type="text" name="telefone" required id="telefone" onkeypress="validarTelefone(event)" value="${usuario.getTelefone()}">
+                        <input type="text" name="telefone" required id="telefone" value="${usuario.getTelefone()}">
                     </fieldset>
                     <fieldset>
                         <label for="username">Username: </label>
-                        <input type="text" name="username" id="username"  required onkeypress="validarUsername()" value="${usuario.getUsername()}">
+                        <input type="text" name="username" id="username"  required value="${usuario.getUsername()}">
                     </fieldset>
                     <fieldset>
                         <label for="senha">Senha: </label>

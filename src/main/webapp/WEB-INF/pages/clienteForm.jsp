@@ -16,7 +16,7 @@
 <tags:layout>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Cadastro</h1>
-        <form action="${pageContext.request.contextPath}/clientes/${method}" method="post">
+        <form action="${pageContext.request.contextPath}/clientes/${method}" id="formCliente" method="post">
 
             <div class="cadastro">
                 <fieldset>
@@ -24,11 +24,11 @@
                     <input type="hidden" name="id" id="id" value="${cliente.getId()}">
                     <fieldset>
                         <label for="nome">Nome: </label>
-                        <input type="text" name="nome" required id="nome" maxlength="100" onkeypress="validarNomeCliente(event)" value="${cliente.getNome()}">
+                        <input type="text" name="nome" required id="nome" value="${cliente.getNome()}">
                     </fieldset>
                     <fieldset>
                         <label for="nascimento">Data de Nascimento (dd/mm/yyyy): </label>
-                        <input type="date" name="nascimento" required id="nascimento" onkeypress="validarData(event)" value="${cliente.getNascimento()}">
+                        <input type="date" name="nascimento" required id="nascimento" value="${cliente.getNascimento()}">
                     </fieldset>
                     <fieldset>
                         <label for="cpf">CPF: </label>
@@ -36,39 +36,39 @@
                     </fieldset>
                     <fieldset>
                         <label for="rg">RG: </label>
-                        <input type="text" name="rg" required id="rg" maxlength="15" onkeypress="validarRG(event)"  value="${cliente.getRg()}">
+                        <input type="text" name="rg" required id="rg" maxlength="15"   value="${cliente.getRg()}">
                         <label for="orgao_emissor">Orgão emissor: </label>
                         <input type="text" name="orgao_emissor" required id="orgao_emissor" maxlength="20" onkeypress="validarOrgaoEmissor(event)"  value="${cliente.getOrgao_emissor()}">
                     </fieldset>
                     <fieldset>
                         <label for="email">Email: </label>
-                        <input type="email" name="email" required id="email" maxlength="100" onkeypress="validarEmail(event)" value="${cliente.getEmail()}">
+                        <input type="email" name="email" required id="email" maxlength="100" value="${cliente.getEmail()}">
                     </fieldset>
                     <fieldset>
                         <label for="telefone">Telefone: </label>
-                        <input type="text" name="telefone" required id="telefone" maxlength="20" onkeypress="validarTelefoneCliente(event)" value="${cliente.getTelefone()}">
+                        <input type="text" name="telefone" required id="telefone" maxlength="20"  value="${cliente.getTelefone()}">
                         <input type="checkbox" name="whats" id="whats" <c:if test="${cliente.isWhats()}">checked</c:if> >
                         <label for="whats">É WhatsApp </label>
                     </fieldset>
                     <fieldset>
                         <label for="logradouro">Rua: </label>
-                        <input type="text" name="logradouro" id="logradouro" maxlength="100" onkeypress="validarLogradouro(event)"  required value="${cliente.getLogradouro()}">
+                        <input type="text" name="logradouro" id="logradouro" maxlength="100" required value="${cliente.getLogradouro()}">
                         <label for="numero">Nº: </label>
                         <input type="text" name="numero" id="numero"  required value="${cliente.getNumero()}">
                     </fieldset>
                     <fieldset>
                         <label for="bairro">Bairro: </label>
-                        <input type="bairro" required name="bairro" id="bairro" maxlength="45" onkeypress="validarBairro(event)" value="${cliente.getBairro()}">
+                        <input type="bairro" required name="bairro" id="bairro" maxlength="45" value="${cliente.getBairro()}">
                     </fieldset>
                     <fieldset>
                         <label for="cidade">Cidade: </label>
-                        <input type="text" name="cidade" id="cidade" maxlength="45"  onkeypress="validarCidade()event)" required value="${cliente.getCidade()}">
+                        <input type="text" name="cidade" id="cidade" maxlength="45"  required value="${cliente.getCidade()}">
                         <label for="estado">Estado: </label>
-                        <input type="text" name="estado" id="estado" maxlength="2" onkeypress="validarEstado()event)" required value="${cliente.getEstado()}">
+                        <input type="text" name="estado" id="estado" maxlength="2" required value="${cliente.getEstado()}">
                     </fieldset>
 
                     <div class="botaoForm">
-                        <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
+                        <input class="botaoTabela" name="submit" type="submit" value="enviar">
                         <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
                     </div>
                 </fieldset>
