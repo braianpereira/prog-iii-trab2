@@ -89,7 +89,7 @@ public class Edit_Servlet extends HttpServlet {
             out.print(status);
             if(status>0){
                 out.print("<p>Record saved successfully!</p>");
-                request.getRequestDispatcher("/WEB-INF/pages/pedidos.jsp").include(request, response);
+//                request.getRequestDispatcher("/WEB-INF/pages/pedidos.jsp").include(request, response);
                 response.sendRedirect(request.getContextPath() + "/pedidos");
             }else{
                 out.println("Sorry! unable to save record");
