@@ -1,8 +1,4 @@
-<%@ page import="br.dev.grancode.modelo.Pedido" %>
-<%@ page import="br.dev.grancode.modelo.Produto" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="br.dev.grancode.dao.ProdutoDao" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Bráian Pereira
   Date: 27/12/2022
@@ -62,14 +58,14 @@
                     </fieldset>
                     <fieldset>
                         <label for="cidade">Cidade: </label>
-                        <input type="text" name="cidade" id="cidade" maxlength="45"  onkeypress="validarCidade()event)" required value="${cliente.getCidade()}">
+                        <input type="text" name="cidade" id="cidade" maxlength="45"  onkeypress="validarCidade(event);" required value="${cliente.getCidade()}">
                         <label for="estado">Estado: </label>
-                        <input type="text" name="estado" id="estado" maxlength="2" onkeypress="validarEstado()event)" required value="${cliente.getEstado()}">
+                        <input type="text" name="estado" id="estado" maxlength="2" onkeypress="validarEstado(event);" required value="${cliente.getEstado()}">
                     </fieldset>
 
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
-                        <a href="${request.getContextPath()}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
+                        <a href="${pageContext.request.contextPath}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
                     </div>
                 </fieldset>
             </div>

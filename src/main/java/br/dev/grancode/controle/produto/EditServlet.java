@@ -13,22 +13,29 @@ import java.io.PrintWriter;
 public class EditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idParam=request.getParameter("id");
-        int id = Integer.parseInt(idParam);
+        HttpSession session = request.getSession();
 
-        try {
-            Produto produto = ProdutoDao.getProdutoPorId(id);
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
-            String method = "editar";
+        if (logado != null && logado.equals(true)) {
+            String idParam=request.getParameter("id");
+            int id = Integer.parseInt(idParam);
 
-            request.setAttribute("produto", produto);
-            request.setAttribute("method", method);
+            try {
+                Produto produto = ProdutoDao.getProdutoPorId(id);
 
-            request.getRequestDispatcher("/WEB-INF/pages/produtoForm.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
+                String method = "editar";
+
+                request.setAttribute("produto", produto);
+                request.setAttribute("method", method);
+
+                request.getRequestDispatcher("/WEB-INF/pages/produtoForm.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
         }
-
     }
 
     @Override
@@ -36,33 +43,43 @@ public class EditServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
 
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            String nome = request.getParameter("nome");
-            String descricao = request.getParameter("descricao");
-            String unidade = request.getParameter("unidade");
-            float preco_unitario = Float.parseFloat(request.getParameter("preco_unitario"));
+        HttpSession session = request.getSession();
 
-            Produto produto = ProdutoDao.getProdutoPorId(id);
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
-            produto.setId(id);
-            produto.setNome(nome);
-            produto.setDescricao(descricao);
-            produto.setUnidade(unidade);
-            produto.setPreco_unitario(preco_unitario);
+        if (logado != null && logado.equals(true)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                String nome = request.getParameter("nome");
+                String descricao = request.getParameter("descricao");
+                String unidade = request.getParameter("unidade");
+                float preco_unitario = Float.parseFloat(request.getParameter("preco_unitario"));
 
-            int status = ProdutoDao.atualizar(produto);
-            out.print(status);
-            if(status>0){
-                out.print("<p>Record saved successfully!</p>");
-                request.getRequestDispatcher("/WEB-INF/pages/produtos.jsp").include(request, response);
-                response.sendRedirect(request.getContextPath() + "/produtos");
-            }else{
+                Produto produto = ProdutoDao.getProdutoPorId(id);
+
+                produto.setId(id);
+                produto.setNome(nome);
+                produto.setDescricao(descricao);
+                produto.setUnidade(unidade);
+                produto.setPreco_unitario(preco_unitario);
+
+                int status = ProdutoDao.atualizar(produto);
+                out.print(status);
+                if(status>0){
+                    out.print("<p>Record saved successfully!</p>");
+                    request.getRequestDispatcher("/WEB-INF/pages/produtos.jsp").include(request, response);
+                    response.sendRedirect(request.getContextPath() + "/produtos");
+                }else{
+                    out.println("Sorry! unable to save record");
+                }
+            } catch (Exception e) {
                 out.println("Sorry! unable to save record");
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            out.println("Sorry! unable to save record");
-            e.printStackTrace();
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
         }
+
+
     }
 }

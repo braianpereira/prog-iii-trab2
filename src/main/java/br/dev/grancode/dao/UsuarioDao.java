@@ -28,7 +28,7 @@ public class UsuarioDao extends Dao{
             ps.setString(5, usuario.getTelefone());
             ps.setBoolean(6, usuario.isWhats());
             ps.setString(7, usuario.getUsername());
-            ps.setString(8, usuario.getSenha());
+            ps.setString(8, usuario.getMd5Senha());
 
             // Executar a Senteça;
             status = ps.executeUpdate();
@@ -81,7 +81,7 @@ public class UsuarioDao extends Dao{
         ps.setString(5, usuario.getTelefone());
         ps.setBoolean(6, usuario.isWhats());
         ps.setString(7, usuario.getUsername());
-        ps.setString(8, usuario.getSenha());
+        ps.setString(8, usuario.getMd5Senha());
     }
 
     public static int excluir(String cpf) {
@@ -122,7 +122,6 @@ public class UsuarioDao extends Dao{
         usuario.setTelefone(rs.getString(5));
         usuario.setWhats(rs.getBoolean(6));
         usuario.setUsername(rs.getString(7));
-        usuario.setSenha(rs.getString(8));
     }
 
     public static List<Usuario> getAllUsuarios() {

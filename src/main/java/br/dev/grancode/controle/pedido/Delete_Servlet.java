@@ -11,11 +11,18 @@ import java.io.IOException;
 public class Delete_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int numero=Integer.parseInt(request.getParameter("numero"));
+        HttpSession session = request.getSession();
 
-        PedidoDao.excluir(numero);
-//        response.sendRedirect("SelectServlet");
-        response.sendRedirect(request.getContextPath() + "/pedidos");
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
+        if (logado != null && logado.equals(true)) {
+            int numero=Integer.parseInt(request.getParameter("numero"));
+
+            PedidoDao.excluir(numero);
+
+            response.sendRedirect(request.getContextPath() + "/pedidos");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
     }
 }

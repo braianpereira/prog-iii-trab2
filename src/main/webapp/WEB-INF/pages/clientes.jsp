@@ -12,16 +12,10 @@
 <tags:layout>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Clientes</h1>
-<%--        <form class="filtro" action="" method="post">--%>
-<%--            <label for="filtro">Filtro: </label>--%>
-<%--            <input class="barraPesquisa" placeholder="Teste" type="text" name="filtro" id="filtro">--%>
-<%--            <input class="botaoFiltrar" type="submit" value="Filtrar">--%>
-<%--        </form>--%>
+
         <div class="containerTabela">
             <section>
                 <button class="botaoTabela" type="button" name="inserir"><a href="${pageContext.request.contextPath}/clientes/novo">Inserir</a></button>
-<%--                <button class="botaoTabela" type="button" name="atualizar">Atualizar</button>--%>
-<%--                <button class="botaoTabela" type="button" name="excluir">Excluir</button>--%>
             </section>
             <table>
                 <thead id="aa">

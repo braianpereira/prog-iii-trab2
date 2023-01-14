@@ -1,8 +1,6 @@
 package br.dev.grancode.controle.produto;
 
-import br.dev.grancode.dao.ClienteDao;
 import br.dev.grancode.dao.ProdutoDao;
-import br.dev.grancode.modelo.Cliente;
 import br.dev.grancode.modelo.Produto;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -15,9 +13,18 @@ import java.util.List;
 public class Select_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Produto> list = ProdutoDao.getAllProdutos();
+        HttpSession session = request.getSession();
 
-        request.setAttribute("produtos", list);
-        request.getRequestDispatcher("/WEB-INF/pages/produtos.jsp").forward(request, response);
+        Boolean logado = (Boolean) session.getAttribute("logado");
+
+        if (logado != null && logado.equals(true)) {
+            List<Produto> list = ProdutoDao.getAllProdutos();
+
+            request.setAttribute("produtos", list);
+            request.getRequestDispatcher("/WEB-INF/pages/produtos.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
+
     }
 }

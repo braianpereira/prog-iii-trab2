@@ -13,9 +13,18 @@ import java.io.PrintWriter;
 public class CreateServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("method", "novo");
-        req.getRequestDispatcher("/WEB-INF/pages/usuarioForm.jsp").forward(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        Boolean logado = (Boolean) session.getAttribute("logado");
+
+        if (logado != null && logado.equals(true)) {
+            request.setAttribute("method", "novo");
+            request.getRequestDispatcher("/WEB-INF/pages/usuarioForm.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
+
     }
 
     @Override
@@ -23,42 +32,49 @@ public class CreateServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
 
+        HttpSession session = request.getSession();
 
-        try {
-            String cpf = request.getParameter("cpf");
-            String nome = request.getParameter("nome");
-            String nascimento = request.getParameter("nascimento");
-            String email = request.getParameter("email");
-            String telefone = request.getParameter("telefone");
-            boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
-            String username = request.getParameter("username");
-            String senha = request.getParameter("senha");
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
-            Usuario usuario = new Usuario();
+        if (logado != null && logado.equals(true)) {
+            try {
+                String cpf = request.getParameter("cpf");
+                String nome = request.getParameter("nome");
+                String nascimento = request.getParameter("nascimento");
+                String email = request.getParameter("email");
+                String telefone = request.getParameter("telefone");
+                boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
+                String username = request.getParameter("username");
+                String senha = request.getParameter("senha");
 
-            usuario.setCpf(cpf);
-            usuario.setNome(nome);
+                Usuario usuario = new Usuario();
 
-            usuario.setNascimento(nascimento);
-            usuario.setEmail(email);
-            usuario.setTelefone(telefone);
-            usuario.setWhats(whats);
-            usuario.setUsername(username);
-            usuario.setSenha(senha);
+                usuario.setCpf(cpf);
+                usuario.setNome(nome);
 
-            int status = UsuarioDao.inserir(usuario);
-            out.print(status);
-            if(status>0){
-                out.print("<p>Record saved successfully!</p>");
-                request.getRequestDispatcher("/WEB-INF/pages/usuarios.jsp").include(request, response);
-                response.sendRedirect(request.getContextPath() + "/usuarios");
-            }else{
+                usuario.setNascimento(nascimento);
+                usuario.setEmail(email);
+                usuario.setTelefone(telefone);
+                usuario.setWhats(whats);
+                usuario.setUsername(username);
+                usuario.setSenha(senha);
+
+                int status = UsuarioDao.inserir(usuario);
+                out.print(status);
+                if(status>0){
+                    out.print("<p>Record saved successfully!</p>");
+                    response.sendRedirect(request.getContextPath() + "/usuarios");
+                }else{
+                    out.println("Sorry! unable to save record");
+                }
+            } catch (Exception e) {
                 out.println("Sorry! unable to save record");
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            out.println("Sorry! unable to save record");
-            e.printStackTrace();
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
         }
+
 
     }
 }

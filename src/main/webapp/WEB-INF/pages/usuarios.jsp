@@ -28,7 +28,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <jsp:useBean id="usuarios" scope="request" type="java.util.List"/>
                 <c:forEach var="usuario" items="${usuarios}">
                 <tr>
                         <td>${usuario.getNome()}</td>

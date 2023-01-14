@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -13,11 +14,17 @@ import java.io.IOException;
 public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String cpf=request.getParameter("cpf");
+        HttpSession session = request.getSession();
 
-        UsuarioDao.excluir(cpf);
-//        response.sendRedirect("SelectServlet");
-        response.sendRedirect(request.getContextPath() + "/usuarios");
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
+        if (logado != null && logado.equals(true)) {
+            String cpf=request.getParameter("cpf");
+
+            UsuarioDao.excluir(cpf);
+            response.sendRedirect(request.getContextPath() + "/usuarios");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
     }
 }

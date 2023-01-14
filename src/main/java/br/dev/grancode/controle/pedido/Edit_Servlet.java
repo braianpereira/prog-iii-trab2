@@ -20,30 +20,39 @@ import java.util.List;
 public class Edit_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String numeroParam=request.getParameter("numero");
-        int numero = Integer.parseInt(numeroParam);
+        HttpSession session = request.getSession();
 
-        try {
-            Pedido pedido = PedidoDao.getPedidoPorNumero(numero);
-            request.setAttribute("pedido", pedido);
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
-            List <PedidoProduto> pedidoProdutos = PedidoProdutoDao.getAllPedidoProdutosPorId(numero);
-            request.setAttribute("pedidoProdutos", pedidoProdutos);
+        if (logado != null && logado.equals(true)) {
+            String numeroParam=request.getParameter("numero");
+            int numero = Integer.parseInt(numeroParam);
 
-            List<Produto> listProduto = ProdutoDao.getAllProdutos();
-            request.setAttribute("produtos", listProduto);
+            try {
+                Pedido pedido = PedidoDao.getPedidoPorNumero(numero);
+                request.setAttribute("pedido", pedido);
 
-            List<Cliente> listCliente = ClienteDao.getAllClientes();
-            request.setAttribute("clientes", listCliente);
+                List <PedidoProduto> pedidoProdutos = PedidoProdutoDao.getAllPedidoProdutosPorId(numero);
+                request.setAttribute("pedidoProdutos", pedidoProdutos);
 
-            String method = "editar";
+                List<Produto> listProduto = ProdutoDao.getAllProdutos();
+                request.setAttribute("produtos", listProduto);
 
-            request.setAttribute("method", method);
+                List<Cliente> listCliente = ClienteDao.getAllClientes();
+                request.setAttribute("clientes", listCliente);
 
-            request.getRequestDispatcher("/WEB-INF/pages/editPedido.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
+                String method = "editar";
+
+                request.setAttribute("method", method);
+
+                request.getRequestDispatcher("/WEB-INF/pages/editPedido.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
         }
+
     }
 
     @Override

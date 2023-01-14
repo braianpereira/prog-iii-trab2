@@ -24,6 +24,14 @@ function validarCpf(evt) {
     }
 }
 
+function validarCpf(evt) {
+    var theEvent = evt || window.event;
+
+    if(evt.target.value.length >= 11){
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
 
 function validarNomeCliente(evt) {
     var theEvent = evt || window.event;

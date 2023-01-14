@@ -1,42 +1,20 @@
 package br.dev.grancode.modelo;
 
+import br.dev.grancode.dao.LoginDao;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Usuario extends  Pessoa{
-    private String pk;
+public class Login {
     private String username;
     private String senha;
     private String md5Senha;
 
-    public String getPk() {
-        return pk;
-    }
-
-    public void setPk(String pk) {
-        this.pk = pk;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
+    public Login(String username, String senha) {
         this.senha = senha;
+        this.username = username;
         this.md5Senha = MD5(senha);
-    }
-
-    public String getMd5Senha() {
-        return md5Senha;
     }
 
     private String MD5(String input){
@@ -64,5 +42,20 @@ public class Usuario extends  Pessoa{
         }
     }
 
+    public boolean doLogin() {
 
+        return LoginDao.verificarCredenciais(this);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public String getMd5Senha() {
+        return md5Senha;
+    }
 }

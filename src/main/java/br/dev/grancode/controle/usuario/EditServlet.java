@@ -13,20 +13,29 @@ import java.io.PrintWriter;
 public class EditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String cpf=request.getParameter("cpf");
+        HttpSession session = request.getSession();
 
-        try {
-            Usuario usuario = UsuarioDao.getUsuarioPorCpf(cpf);
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
-            String method = "editar";
+        if (logado != null && logado.equals(true)) {
+            String cpf=request.getParameter("cpf");
 
-            request.setAttribute("usuario", usuario);
-            request.setAttribute("method", method);
+            try {
+                Usuario usuario = UsuarioDao.getUsuarioPorCpf(cpf);
 
-            request.getRequestDispatcher("/WEB-INF/pages/usuarioForm.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
+                String method = "editar";
+
+                request.setAttribute("usuario", usuario);
+                request.setAttribute("method", method);
+
+                request.getRequestDispatcher("/WEB-INF/pages/usuarioForm.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
         }
+
 
     }
 
@@ -35,43 +44,57 @@ public class EditServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
 
+        HttpSession session = request.getSession();
 
-        try {
-            String oldCpf = request.getParameter("pk");
-            String cpf = request.getParameter("cpf");
-            String nome = request.getParameter("nome");
-            String nascimento = request.getParameter("nascimento");
-            String email = request.getParameter("email");
-            String telefone = request.getParameter("telefone");
-            Boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
-            String username = request.getParameter("username");
-            String senha = request.getParameter("senha");
+        Boolean logado = (Boolean) session.getAttribute("logado");
 
-            Usuario usuario = UsuarioDao.getUsuarioPorCpf(oldCpf);
+        if (logado != null && logado.equals(true)) {
+            try {
+                String oldCpf = request.getParameter("pk");
+                String cpf = request.getParameter("cpf");
+                String nome = request.getParameter("nome");
+                String nascimento = request.getParameter("nascimento");
+                String email = request.getParameter("email");
+                String telefone = request.getParameter("telefone");
+                Boolean whats = (request.getParameter("whats") != null) && request.getParameter("whats").equals("on");
+                String username = request.getParameter("username");
+                String senha = request.getParameter("senha");
 
-            usuario.setPk(oldCpf);
-            usuario.setCpf(cpf);
-            usuario.setNome(nome);
 
-            usuario.setNascimento(nascimento);
-            usuario.setEmail(email);
-            usuario.setTelefone(telefone);
-            usuario.setWhats(whats);
-            usuario.setUsername(username);
-            usuario.setSenha(senha);
+                Usuario usuario = UsuarioDao.getUsuarioPorCpf(oldCpf);
 
-            int status = UsuarioDao.atualizar(usuario);
-            out.print(status);
-            if(status>0){
-                out.print("<p>Record saved successfully!</p>");
-                request.getRequestDispatcher("/WEB-INF/pages/usuarios.jsp").include(request, response);
-                response.sendRedirect(request.getContextPath() + "/usuarios");
-            }else{
+                usuario.setPk(oldCpf);
+                usuario.setCpf(cpf);
+                usuario.setNome(nome);
+
+                usuario.setNascimento(nascimento);
+                usuario.setEmail(email);
+                usuario.setTelefone(telefone);
+                usuario.setWhats(whats);
+                usuario.setUsername(username);
+                if(!senha.isEmpty()) {
+                    usuario.setSenha(senha);
+                }
+
+
+                int status = UsuarioDao.atualizar(usuario);
+                out.print(status);
+                if(status>0){
+                    out.print("<p>Record saved successfully!</p>");
+                    request.getRequestDispatcher("/WEB-INF/pages/usuarios.jsp").include(request, response);
+                    response.sendRedirect(request.getContextPath() + "/usuarios");
+                }else{
+                    out.println("Sorry! unable to save record");
+                }
+            } catch (Exception e) {
                 out.println("Sorry! unable to save record");
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            out.println("Sorry! unable to save record");
-            e.printStackTrace();
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login");
         }
+
+
+
     }
 }
