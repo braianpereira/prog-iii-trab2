@@ -12,7 +12,7 @@
 <tags:layout>
     <div class="conteinerPrincipal">
         <h1 class="titulo">Cadastro</h1>
-        <form action="${pageContext.request.contextPath}/produtos/${method}" method="post">
+        <form action="${pageContext.request.contextPath}/produtos/${method}" id="formProduto" method="post">
 
             <div class="cadastro">
                 <fieldset>
@@ -36,7 +36,9 @@
                     </fieldset>
                     <div class="botaoForm">
                         <button class="botaoTabela" type="submit" value="enviar">Salvar</button>
+
                         <a href="${pageContext.request.contextPath}/clientes/"><input class="botaoTabela" type="button" value="Voltar"></a>
+
                     </div>
                 </fieldset>
             </div>
