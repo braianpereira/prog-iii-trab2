@@ -27,11 +27,16 @@ function validarCpf(evt) {
 
 function validaCliente(evt){
    /*
+   * CPF
+   * */
+    CPF('cpf',evt)
+
+    /*
    * Nome
    * */
     const nome = document.getElementById('nome')
 
-    if(nome.value.length >= 100){
+    if(nome.value.length > 100){
         if(evt.preventDefault()) evt.preventDefault()
         alert("O campo nome deve ter no maximo 100 caracteres")
         nome.focus()
@@ -176,153 +181,6 @@ function validaCliente(evt){
 const cliente = document.getElementById('formCliente')
 if(cliente != null) cliente.addEventListener('submit', validaCliente)
 
-
-// function validarNomeCliente(evt) {
-//     const nome = document.getElementById('nome')
-//
-//     if(nome.value.length >= 100){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         alert("O campo nome deve ter no maximo 100 caracteres")
-//         nome.focus()
-//         return false
-//     }else if(nome.value === ""){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         alert("o campo nome é de preenchimento obrigatorio")
-//         nome.focus()
-//         return false
-//     }
-// }
-// function validarOrgaoEmissor(evt) {
-//     const org = document.getElementById('orgao_emissor')
-//
-//     if(org.value.length >= 20){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo orgão emissor deve ter no maximo 20 caracteres')
-//         org.focus()
-//         return false
-//     }
-// }
-// function validarEmail(evt){
-//     const email = document.getElementById('email')
-//
-//     if(email.value.length >= 100){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo email deve ter no maximo 100 caracteres')
-//         email.focus()
-//         return false
-//     }else if(email.value === ""){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         alert("o campo email é de preenchimento obrigatorio")
-//         email.focus()
-//         return false
-//     }else if( (email.length < 8) ||
-//             (email.indexOf(" ") != -1) ||
-//             (email.indexOf("..") != -1) ||
-//             (email.indexOf(".@") != -1) ||
-//             (email.indexOf("@.") != -1) ||
-//             (email.indexOf("@") < 2) ||
-//             (email.indexOf("@") != email.lastIndexOf("@")) ||
-//             (email.indexOf(".",email.indexOf("@")) < email.indexOf("@") + 3) ||
-//             (email.lastIndexOf(".") > email.length - 3) ||
-//             (email.indexOf(".") == 0)){
-//         alert("Ops... Este e-mail parece ser inválido.");
-//         email.value = ""
-//         return false
-//     }
-//
-// }
-// function validarTelefoneCliente(evt) {
-//     const tel = document.getElementById('telefone')
-//
-//     if(tel.value.length >= 20){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo telefone deve ter no maximo 20 caracteres')
-//         tel.focus()
-//         return false
-//     }else if(tel.value === ""){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('o campo telefone é de preenchimento obrigatorio')
-//     }
-// }
-// function validarLogradouro(evt) {
-//     const log = document.getElementById('logradouro')
-//
-//     if(log.value.length >= 100){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo logradouro deve ter no maximo 100 caracteres')
-//         log.focus()
-//         return false
-//     }
-// }
-// function validarNumero(evt) {
-//     const num = document.getElementById('numero')
-//     if(num.value.length >= 20){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo numero deve ter no maximo 20 caracteres')
-//         num.focus()
-//         return false
-//     }
-// }
-// function validarBairro(evt) {
-//     const bair = document.getElementById('bairro')
-//
-//     if(bair.value.length >= 45){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo bairro deve ter no maximo 45 caracteres')
-//         bair.focus()
-//         return false
-//     }
-// }
-// function validarCidade(evt) {
-//     const cid = document.getElementById('cidade')
-//
-//     if(cid.value.length >= 45){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo cidade deve ter no maximo 45 caracteres')
-//         cid.focus()
-//     }
-// }
-// function validarEstado(evt) {
-//     const est = document.getElementById('estado')
-//
-//     if(est.value.length >= 2){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo estado deve ter no maximo 2 caracteres')
-//         est.focus()
-//         return false
-//     }
-// }
-// function validarRG(evt) {
-//     const rg = document.getElementById('rg')
-//
-//     if(rg.value.length >= 15){
-//         if(evt.preventDefault()) evt.preventDefault()
-//         window.alert('O campo rg deve ter no maximo 15 caracteres')
-//         rg.focus()
-//         return false
-//     }
-// }
-//
-// function validarNascimento(evt){
-//         var data = document.getElementById("nascimento").value;
-//         data = data.replace(/\//g, "-");
-//         var data_array = data.split("-");
-//
-//         if(data_array[0].length != 4){
-//             data = data_array[2]+"-"+data_array[1]+"-"+data_array[0];
-//         }
-//
-//         // comparo as datas e calculo a idade
-//         var hoje = new Date();
-//         var nasc  = new Date(data);
-//         // var idade = hoje.getFullYear() - nasc.getFullYear();
-//         var m = hoje.getMonth() - nasc.getMonth();
-//         if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())){
-//             if(evt.preventDefault()) evt.preventDefault()
-//             window.alert('Data de nascimento invalida')
-//         }
-// }
-
 /*
 * Validações produto
 * */
@@ -333,7 +191,7 @@ function validaProduto(evt){
     * */
     const nome = document.getElementById('nome')
 
-    if (nome.value.length >= 100) {
+    if (nome.value.length > 100) {
         if (evt.preventDefault) evt.preventDefault();
         window.alert('O campo nome deve ter no maximo 100 caracteres')
         nome.focus()
@@ -348,7 +206,7 @@ function validaProduto(evt){
     * */
     const und = document.getElementById('unidade')
 
-    if (und.value.length >= 3) {
+    if (und.value.length > 3) {
         if (evt.preventDefault) evt.preventDefault();
         window.alert('O campo unidade deve ter no maximo 100 caracteres')
         nome.focus()
@@ -380,23 +238,6 @@ function validaProduto(evt){
 
 const formProd = document.getElementById('formProduto')
 if (formProd != null) formProd.addEventListener('submit', validaProduto)
-
-// function validarNomeProduto(evt) {
-//     var evt = evt || window.event;
-//
-//     if (evt.target.value.length >= 100) {
-//         evt.returnValue = false;
-//         if (evt.preventDefault) evt.preventDefault();
-//     }
-// }
-// function validarUnidade(evt) {
-//     var evt = evt || window.event;
-//
-//     if(evt.target.value.length >= 3){
-//         evt.returnValue = false;
-//         if(evt.preventDefault) evt.preventDefault();
-//     }
-// }
 
 /*
 * Pedido
@@ -480,6 +321,11 @@ if (formPedido != null) formPedido.addEventListener("submit", validaPedido)
 * */
 
 function validaUsuario(evt){
+    /*
+    * CPF
+    * */
+    CPF('pk',evt)
+
     /*
     * Nome
     * */
@@ -589,24 +435,22 @@ const Email = (tm,evt) => {
     }
 }
 
-// function validarUsername(evt) {
-//     var evt = evt || window.event;
-//
-//     if(evt.target.value.length >= 15){
-//         evt.returnValue = false;
-//         if(evt.preventDefault) evt.preventDefault();
-//     }
-// }
+const CPF = (id, evt)=>{
+    const cpf = document.getElementById(id)
+    let regex = /[0-9]|\./;
 
-
-// function validarTelefoneUsuario(evt) {
-//     var evt = evt || window.event;
-//
-//     if (evt.target.value.length >= 20) {
-//         evt.returnValue = false;
-//         if (evt.preventDefault) evt.preventDefault();
-//     }
-// }
+    if(!regex.test(key) ) {
+        if(evt.preventDefault) evt.preventDefault();
+        window.alert('CPF invalido')
+        cpf.focus()
+        return false
+    }else if(cpf.value.length > 11){
+        if(evt.preventDefault) evt.preventDefault();
+        window.alert('CPF invalido')
+        cpf.focus()
+        return false
+    }
+}
 
 function addProduto() {
     let produtos = document.querySelector(".produtos")

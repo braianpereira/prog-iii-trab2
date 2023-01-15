@@ -12,7 +12,7 @@
 <%--@elvariable id="method" type="java.lang.String"--%>
   <div class="conteinerPrincipal">
     <h1 class="titulo">Cadastro</h1>
-    <form action="${pageContext.request.contextPath}/pedidos/${method}" method="post">
+    <form action="${pageContext.request.contextPath}/pedidos/${method}" id="formPedido" method="post">
 
       <div class="cadastro">
         <fieldset>
@@ -28,7 +28,7 @@
           </fieldset>
           <fieldset>
             <label for="Data_Entrega">Data de entrega :  </label>
-            <input type="date" name="Data_Entrega" required id="Data_Entrega" value="${pedido.getDataEntrega()}">
+            <input type="date" name="Data_Entrega" id="Data_Entrega" value="${pedido.getDataEntrega()}">
           </fieldset>
           <fieldset>
             <label>Cliente : </label>

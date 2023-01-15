@@ -28,7 +28,7 @@
                     </fieldset>
                     <fieldset>
                         <label for="Data_Entrega">Data de entrega :  </label>
-                        <input type="date" name="Data_Entrega" required id="Data_Entrega" value="${pedidos.getDataEntrega()}">
+                        <input type="date" name="Data_Entrega" id="Data_Entrega" value="${pedidos.getDataEntrega()}">
                     </fieldset>
                     <fieldset>
                         <label for="Cliente_Id">Cliente : </label>

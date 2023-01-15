@@ -24,29 +24,29 @@
                     </fieldset>
                     <fieldset>
                         <label for="nome">Nome: </label>
-                        <input type="text" name="nome" required id="nome" value="${usuario.getNome()}">
+                        <input type="text" name="nome" required id="nome" minlength="5" maxlength="100" value="${usuario.getNome()}">
                     </fieldset>
                     <fieldset>
                         <label for="nascimento">Data de Nascimento (dd/mm/yyyy): </label>
-                        <input type="date" name="nascimento" required id="nascimento" value="${usuario.getNascimento()}">
+                        <input type="date" name="nascimento" id="nascimento" value="${usuario.getNascimento()}">
                     </fieldset>
                     <fieldset>
                         <label for="email">Email: </label>
-                        <input type="email" name="email" required id="email" value="${usuario.getEmail()}">
+                        <input type="email" name="email" required id="email" minlength="8" maxlength="45" value="${usuario.getEmail()}">
                     </fieldset>
                     <fieldset>
                         <input type="checkbox" name="whats" id="whats" <c:if test="${usuario.isWhats()}">checked</c:if>>
                         <label for="whats">É WhatsApp </label>
                         <label for="telefone">Telefone: </label>
-                        <input type="text" name="telefone" required id="telefone" value="${usuario.getTelefone()}">
+                        <input type="text" name="telefone" id="telefone" value="${usuario.getTelefone()}">
                     </fieldset>
                     <fieldset>
                         <label for="username">Username: </label>
-                        <input type="text" name="username" id="username"  required value="${usuario.getUsername()}">
+                        <input type="text" name="username" id="username"  required minlength="3" maxlength="15" value="${usuario.getUsername()}">
                     </fieldset>
                     <fieldset>
                         <label for="senha">Nova Senha: </label>
-                        <input type="password" <c:if test="${method == 'editar'}">required</c:if> name="senha" id="senha">
+                        <input type="password" minlength="8" maxlength="255" <c:if test="${method == 'editar'}">required</c:if> name="senha" id="senha">
                     </fieldset>
 
                     <div class="botaoForm">

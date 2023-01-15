@@ -20,7 +20,7 @@
                     <input type="hidden" name="id" id="id" value="${cliente.getId()}">
                     <fieldset>
                         <label for="nome">Nome: </label>
-                        <input type="text" name="nome" required id="nome" value="${cliente.getNome()}">
+                        <input type="text" name="nome" required id="nome" minlength="5" maxlength="100" value="${cliente.getNome()}">
                     </fieldset>
                     <fieldset>
                         <label for="nascimento">Data de Nascimento (dd/mm/yyyy): </label>
@@ -28,39 +28,39 @@
                     </fieldset>
                     <fieldset>
                         <label for="cpf">CPF: </label>
-                        <input type="text" name="cpf" required id="cpf" onkeypress="validarCpf(event)" value="${cliente.getCpf()}">
+                        <input type="text" name="cpf" required id="cpf" minlength="11" onkeypress="validarCpf(event)" value="${cliente.getCpf()}">
                     </fieldset>
                     <fieldset>
                         <label for="rg">RG: </label>
-                        <input type="text" name="rg" required id="rg" maxlength="15"   value="${cliente.getRg()}">
+                        <input type="text" name="rg" id="rg" maxlength="15" value="${cliente.getRg()}">
                         <label for="orgao_emissor">Orgão emissor: </label>
-                        <input type="text" name="orgao_emissor" required id="orgao_emissor" maxlength="20" onkeypress="validarOrgaoEmissor(event)"  value="${cliente.getOrgao_emissor()}">
+                        <input type="text" name="orgao_emissor" id="orgao_emissor" maxlength="20" value="${cliente.getOrgao_emissor()}">
                     </fieldset>
                     <fieldset>
                         <label for="email">Email: </label>
-                        <input type="email" name="email" required id="email" maxlength="100" value="${cliente.getEmail()}">
+                        <input type="email" name="email" required id="email" minlength="8" maxlength="100" value="${cliente.getEmail()}">
                     </fieldset>
                     <fieldset>
                         <label for="telefone">Telefone: </label>
-                        <input type="text" name="telefone" required id="telefone" maxlength="20"  value="${cliente.getTelefone()}">
+                        <input type="text" name="telefone" required id="telefone" minlength="5" maxlength="20"  value="${cliente.getTelefone()}">
                         <input type="checkbox" name="whats" id="whats" <c:if test="${cliente.isWhats()}">checked</c:if> >
                         <label for="whats">É WhatsApp </label>
                     </fieldset>
                     <fieldset>
                         <label for="logradouro">Rua: </label>
-                        <input type="text" name="logradouro" id="logradouro" maxlength="100" required value="${cliente.getLogradouro()}">
+                        <input type="text" name="logradouro" id="logradouro" maxlength="100"  value="${cliente.getLogradouro()}">
                         <label for="numero">Nº: </label>
-                        <input type="text" name="numero" id="numero"  required value="${cliente.getNumero()}">
+                        <input type="text" name="numero" id="numero" maxlength="20"  value="${cliente.getNumero()}">
                     </fieldset>
                     <fieldset>
                         <label for="bairro">Bairro: </label>
-                        <input type="bairro" required name="bairro" id="bairro" maxlength="45" value="${cliente.getBairro()}">
+                        <input type="bairro"  name="bairro" id="bairro" maxlength="45" value="${cliente.getBairro()}">
                     </fieldset>
                     <fieldset>
                         <label for="cidade">Cidade: </label>
-                        <input type="text" name="cidade" id="cidade" maxlength="45"  required value="${cliente.getCidade()}">
+                        <input type="text" name="cidade" id="cidade" maxlength="45" value="${cliente.getCidade()}">
                         <label for="estado">Estado: </label>
-                        <input type="text" name="estado" id="estado" maxlength="2" required value="${cliente.getEstado()}">
+                        <input type="text" name="estado" id="estado" maxlength="2" value="${cliente.getEstado()}">
                     </fieldset>
                     
                     <div class="botaoForm">
