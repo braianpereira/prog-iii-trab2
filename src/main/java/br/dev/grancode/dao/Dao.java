@@ -8,7 +8,7 @@ public class Dao {
         Connection con=null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "leo", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "12345");
         }catch(Exception e){System.out.println(e.getMessage());}
         return con;
     }
